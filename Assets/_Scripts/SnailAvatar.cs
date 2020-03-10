@@ -20,27 +20,38 @@ public class SnailAvatar : MonoBehaviour
 
     float timerBetweenTwoNormal = 0;
 
-
-
     [SerializeField] Rigidbody rb;
     [SerializeField] Transform downRaycast;
     [SerializeField] float powerOfGravity;
     [SerializeField] float speedOfGravityOrientation;
     [SerializeField] float speedOfSnail;
+    float speedOfSnailInGame;
     [SerializeField] float speedOfSnailRotation;
     [SerializeField] float fakeSpeed;
     [SerializeField] float speedOfSlide;
+
 
     // Start is called before the first frame update
     void Start()
     {
         baseCollider = GetComponent<MeshCollider>();
         slideCollider = GetComponent<BoxCollider>();
+        speedOfSnailInGame = speedOfSnail;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            speedOfSnail += speedOfSnailInGame;
+        }
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailInGame > 0)
+        {
+            speedOfSnail -= speedOfSnailInGame;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             modeSlide = true;
@@ -123,7 +134,6 @@ public class SnailAvatar : MonoBehaviour
 
 
             gravityOrientation = Vector3.Lerp(gravityOrientation, hit.normal,Time.deltaTime*speedOfGravityOrientation);
-            print(Time.deltaTime * speedOfGravityOrientation);
             //gravityOrientation = hit.normal;
             //gravityOrientation = hit.normal;
 
@@ -132,13 +142,11 @@ public class SnailAvatar : MonoBehaviour
         {
             //transform.Rotate(Vector3.right * Time.deltaTime * 10);
             /*gravityOrientation = transform.up;
-            print(transform.up);
             gravityToGive = -gravityOrientation * powerOfGravity;
             touchingTheFloor = false;*/
 
             if (Physics.Raycast(downRaycast.position, -downRaycast.up, out hit, 5f))
             {
-                print("lol1");
                 Debug.DrawRay(downRaycast.position, -downRaycast.up * 0.75f, Color.black);
                 /*if (Input.GetKey(KeyCode.Z) == false)
                 {
