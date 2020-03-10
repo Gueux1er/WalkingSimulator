@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{649a6dbb-eb86-4234-a82d-d26f96baffe1}">
+		<property name="name">
+			<value>DistanceFoam</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bfcd7283-7c6d-4cf8-ac52-815df06e0174}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4a25b28a-a625-43ed-a9df-cb2ab1e21122}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4a25b28a-a625-43ed-a9df-cb2ab1e21122}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{a830fdb7-f823-41be-bf20-27a1426ca7fa}">
+		<property name="assetPath">
+			<value>Trailer Sub, Thump, Short, Processed 04 SND36003.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.77608333333333335</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b650f45d-ec8f-45e3-9658-d2c44caa3cf1}</destination>
+		</relationship>
+	</object>
+</objects>

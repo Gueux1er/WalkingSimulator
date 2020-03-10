@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="ParameterPreset" id="{645a15cd-0bc0-480f-959b-074c09b4b374}">
+		<property name="name">
+			<value>SnailDelta</value>
+		</property>
+		<relationship name="folder">
+			<destination>{bfcd7283-7c6d-4cf8-ac52-815df06e0174}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{d46a6077-06bb-4ca8-89ac-9d7dbb320df7}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{d46a6077-06bb-4ca8-89ac-9d7dbb320df7}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

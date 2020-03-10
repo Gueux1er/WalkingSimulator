@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{6bfce66f-6f69-452f-b2b8-3964816e6534}">
+		<property name="assetPath">
+			<value>Animal, Bird, Pigeon, Wing Flaps, Fly Away 1 SND1800 1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.1948541666666666</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b650f45d-ec8f-45e3-9658-d2c44caa3cf1}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{cd156f0b-e4b2-4fb7-8a97-fb5cc62713c1}">
+		<property name="assetPath">
+			<value>Animal, Bird, Flap Wings, Short, On Ground 4 SND14435 3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.15834375000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b650f45d-ec8f-45e3-9658-d2c44caa3cf1}</destination>
+		</relationship>
+	</object>
+</objects>

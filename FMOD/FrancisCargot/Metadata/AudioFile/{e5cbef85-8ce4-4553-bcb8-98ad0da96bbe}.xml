@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{e5cbef85-8ce4-4553-bcb8-98ad0da96bbe}">
+		<property name="assetPath">
+			<value>water_loop.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>139</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{b650f45d-ec8f-45e3-9658-d2c44caa3cf1}</destination>
+		</relationship>
+	</object>
+</objects>

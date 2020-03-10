@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="Snapshot" id="{e696b179-c2cc-49f3-8928-e2d2f96f3f6a}">
+		<property name="name">
+			<value>OnShell</value>
+		</property>
+		<relationship name="mixer">
+			<destination>{b92d31c5-340c-4854-b797-c98908b6196c}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{7d660541-410e-4901-b092-a84c0b5050d8}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{69d17e64-600c-41f9-960f-fcf7611ef674}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{6aa98a66-c1f4-4af1-b39e-6098d9212727}</destination>
+		</relationship>
+		<relationship name="snapshotMasterTrack">
+			<destination>{4c9d97e4-cec0-4a6f-97b6-c12fa20d70fe}</destination>
+		</relationship>
+		<relationship name="snapshotProperties">
+			<destination>{7c6370a3-5a3d-4e7a-9854-d4a850395f2b}</destination>
+			<destination>{c7eb9c42-828c-43b3-b1e4-6c71dd2b170a}</destination>
+		</relationship>
+		<relationship name="snapshotTracks">
+			<destination>{c01dd5a1-b29d-48ca-9693-75407e9ec661}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{7d660541-410e-4901-b092-a84c0b5050d8}" />
+	<object class="MarkerTrack" id="{69d17e64-600c-41f9-960f-fcf7611ef674}" />
+	<object class="Timeline" id="{6aa98a66-c1f4-4af1-b39e-6098d9212727}" />
+	<object class="SnapshotMasterTrack" id="{4c9d97e4-cec0-4a6f-97b6-c12fa20d70fe}" />
+	<object class="SnapshotProperty" id="{7c6370a3-5a3d-4e7a-9854-d4a850395f2b}">
+		<property name="propertyName">
+			<value>midGain</value>
+		</property>
+		<property name="value">
+			<value>-80</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{f2dda6f3-e5bc-4bbe-82f3-f90ede2768e6}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotProperty" id="{c7eb9c42-828c-43b3-b1e4-6c71dd2b170a}">
+		<property name="propertyName">
+			<value>highGain</value>
+		</property>
+		<property name="value">
+			<value>-80</value>
+		</property>
+		<relationship name="automatableObject">
+			<destination>{f2dda6f3-e5bc-4bbe-82f3-f90ede2768e6}</destination>
+		</relationship>
+	</object>
+	<object class="SnapshotTrack" id="{c01dd5a1-b29d-48ca-9693-75407e9ec661}">
+		<relationship name="mixerStrip">
+			<destination>{4199ffd4-b38e-4cce-be47-c83401df9fc2}</destination>
+		</relationship>
+	</object>
+</objects>
