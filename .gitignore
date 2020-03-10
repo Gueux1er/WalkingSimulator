@@ -4,6 +4,7 @@
 /[Bb]uild/
 /[Bb]uilds/
 *.stackdump
+/Assets/Plugins/FMOD/Cache/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

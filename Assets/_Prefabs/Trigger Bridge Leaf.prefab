@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leafList: []
-  hardWindEventEmitter: {fileID: 0}
+  hardWindEventEmitter: {fileID: 6997541727489060675}
 --- !u!1 &9200998555410082888
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CollisionTag: 
-  Event: 
+  Event: event:/4_InvisibleStatic3D/wind_hard
   PlayEvent: 0
   StopEvent: 0
   AllowFadeout: 1
@@ -281,5 +281,5 @@ MonoBehaviour:
   Preload: 0
   Params: []
   OverrideAttenuation: 0
-  OverrideMinDistance: -1
-  OverrideMaxDistance: -1
+  OverrideMinDistance: 0
+  OverrideMaxDistance: 0
