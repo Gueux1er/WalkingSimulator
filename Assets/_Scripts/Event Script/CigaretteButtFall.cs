@@ -14,7 +14,7 @@ public class CigaretteButtFall : MonoBehaviour
     private void Start()
     {
         //Function to get snail transform
-        snail = FindObjectOfType<MouvementAvatar>().transform;
+        snail = FindObjectOfType<SnailAvatar>().transform;
     }
 
     private void OnTriggerEnter(Collider other)

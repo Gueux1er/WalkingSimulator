@@ -1,15 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SnailAvatar : MonoBehaviour
 {
+
+
     bool touchingTheFloor = false;
     bool inFakeRotation = false;
     bool modeSlide = false;
 
+    [SerializeField] Image fadeImage;
+
     [SerializeField] Vector3 gravityOrientation;
     Vector3 gravityToGive = -Vector3.up * 9.81f;
+
+    bool noMove = false;
+
+
+    [System.Serializable]
+    public struct transformSnail
+    {
+        public Vector3 pos;
+        public Quaternion orientation;
+
+        public transformSnail (Vector3 posOfSnail, Quaternion orientationOfSnail)
+        {
+            pos = posOfSnail;
+            orientation = orientationOfSnail;
+        }
+    }
+    [SerializeField] public List<transformSnail> previousPosition = new List<transformSnail>();
 
     RaycastHit previousHit;
 
@@ -27,6 +50,7 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] float speedOfSnail;
     float speedOfSnailInGame;
     [SerializeField] float speedOfSnailRotation;
+    float speedOfSnailRotationInGame;
     [SerializeField] float fakeSpeed;
     [SerializeField] float speedOfSlide;
 
@@ -36,20 +60,52 @@ public class SnailAvatar : MonoBehaviour
     {
         baseCollider = GetComponent<MeshCollider>();
         slideCollider = GetComponent<BoxCollider>();
+
         speedOfSnailInGame = speedOfSnail;
+        speedOfSnailRotationInGame = speedOfSnailRotation;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (modeSlide == true)
+        {
+            AddPositionRemember();
+        }
+
+        InputManager();
+        CheckFloor();
+        ChangeGravity();
+
+    }
+
+    void InputManager()
+    {
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
             speedOfSnail += speedOfSnailInGame;
+            speedOfSnailRotation += speedOfSnailRotationInGame;
         }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailInGame > 0)
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailInGame > speedOfSnailRotationInGame)
         {
             speedOfSnail -= speedOfSnailInGame;
         }
+        if ( Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailRotation > speedOfSnailRotationInGame)
+        {
+            speedOfSnailRotation -= speedOfSnailRotationInGame;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            print("A");
+            StartCoroutine(Die());
+        }
+
 
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -59,7 +115,7 @@ public class SnailAvatar : MonoBehaviour
 
         }
 
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             modeSlide = false;
             ChangePhysicInteraction(modeSlide);
@@ -67,13 +123,51 @@ public class SnailAvatar : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.Z) && modeSlide == false)
+        if (Input.GetKey(KeyCode.Z) && modeSlide == false && noMove == false)
         {
             Moving();
         }
-        CheckFloor();
-        ChangeGravity();
+    }
 
+    IEnumerator Die()
+    {
+        noMove = true;
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        transform.position = previousPosition[0].pos;
+        transform.rotation = previousPosition[0].orientation;
+        previousPosition.Clear();
+
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f - ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+        noMove = false;
+    }
+
+    public IEnumerator Teleport(Transform target)
+    {
+        noMove = true;
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f - ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+        noMove = false;
     }
 
 
@@ -108,8 +202,6 @@ public class SnailAvatar : MonoBehaviour
             }
         }
 
-
-
         Debug.DrawLine(transform.position, transform.position + gravityToGive, Color.blue);
     }
 
@@ -120,6 +212,19 @@ public class SnailAvatar : MonoBehaviour
         float rotationOnCamera = Camera.main.transform.localRotation.y * speedOfSnailRotation * Time.deltaTime;
         transform.Rotate(0, rotationOnCamera, 0);
         Camera.main.GetComponent<CameraController>().rotY -= rotationOnCamera;
+        AddPositionRemember();
+    }
+
+    void AddPositionRemember()
+    {
+        transformSnail tS;
+        tS.pos = transform.position;
+        tS.orientation = transform.rotation;
+        previousPosition.Add(tS);
+        if (previousPosition.Count > 300)
+        {
+            previousPosition.RemoveAt(0);
+        }
     }
 
 

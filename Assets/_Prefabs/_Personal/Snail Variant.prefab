@@ -73,6 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 519f628880002524685cb8dccf4319db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeImage: {fileID: 0}
   gravityOrientation: {x: 0, y: 1, z: 0}
   normalMat: {fileID: 13400000, guid: 60e5978197e22f446876d1c4015f26a4, type: 2}
   iceMat: {fileID: 13400000, guid: b2932973059f5cb4e86fee8b83c3ca6e, type: 2}
@@ -95,11 +96,29 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1013236816, guid: 9e87b4b2304dd354bba21f81e8c66c8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1013236816, guid: 9e87b4b2304dd354bba21f81e8c66c8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1530528668, guid: 9e87b4b2304dd354bba21f81e8c66c8c, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 60e5978197e22f446876d1c4015f26a4,
         type: 2}
+    - target: {fileID: 7023463393365694181, guid: 9e87b4b2304dd354bba21f81e8c66c8c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7023463393365694181, guid: 9e87b4b2304dd354bba21f81e8c66c8c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7023463393967157990, guid: 9e87b4b2304dd354bba21f81e8c66c8c,
         type: 3}
       propertyPath: processVolume
