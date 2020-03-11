@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class SnailAvatar : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class SnailAvatar : MonoBehaviour
     Vector3 gravityToGive = -Vector3.up * 9.81f;
 
     bool noMove = false;
-
+    bool drugEnable = false;
 
     [System.Serializable]
     public struct transformSnail
@@ -26,7 +27,7 @@ public class SnailAvatar : MonoBehaviour
         public Vector3 pos;
         public Quaternion orientation;
 
-        public transformSnail (Vector3 posOfSnail, Quaternion orientationOfSnail)
+        public transformSnail(Vector3 posOfSnail, Quaternion orientationOfSnail)
         {
             pos = posOfSnail;
             orientation = orientationOfSnail;
@@ -54,6 +55,9 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] float fakeSpeed;
     [SerializeField] float speedOfSlide;
 
+    [SerializeField] PostProcessVolume pPV;
+    ChromaticAberration chromaticAberration;
+    LensDistortion lensDistortion;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +67,9 @@ public class SnailAvatar : MonoBehaviour
 
         speedOfSnailInGame = speedOfSnail;
         speedOfSnailRotationInGame = speedOfSnailRotation;
+
+        pPV.profile.TryGetSettings(out chromaticAberration);
+        pPV.profile.TryGetSettings(out lensDistortion);
     }
 
     // Update is called once per frame
@@ -77,6 +84,15 @@ public class SnailAvatar : MonoBehaviour
         CheckFloor();
         ChangeGravity();
 
+        if (drugEnable == true)
+        {
+            randomDrug();
+        }
+        else
+        {
+            DesableDrug();
+        }
+
     }
 
     void InputManager()
@@ -90,7 +106,7 @@ public class SnailAvatar : MonoBehaviour
         {
             speedOfSnail -= speedOfSnailInGame;
         }
-        if ( Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailRotation > speedOfSnailRotationInGame)
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailRotation > speedOfSnailRotationInGame)
         {
             speedOfSnailRotation -= speedOfSnailRotationInGame;
         }
@@ -238,7 +254,7 @@ public class SnailAvatar : MonoBehaviour
             Debug.DrawRay(transform.position, -transform.up * 0.75f, Color.yellow);
 
 
-            gravityOrientation = Vector3.Lerp(gravityOrientation, hit.normal,Time.deltaTime*speedOfGravityOrientation);
+            gravityOrientation = Vector3.Lerp(gravityOrientation, hit.normal, Time.deltaTime * speedOfGravityOrientation);
             //gravityOrientation = hit.normal;
             //gravityOrientation = hit.normal;
 
@@ -272,6 +288,60 @@ public class SnailAvatar : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Mushroom")
+        {
+            drugEnable = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Mushroom")
+        {
+            drugEnable = false;
+        }
+    }
+
+    float randomX = 0.5f;
+    float randomY = 1f;
+    float timerX = 0f;
+    float timerY = 0f;
+
+    void randomDrug()
+    {
+        Camera.main.GetComponent<ImageEffect>().enabled = true;
+        if (chromaticAberration.intensity.value < 1)
+        {
+            chromaticAberration.intensity.value += 0.01f;
+        }
+        lensDistortion.intensityX.value = Mathf.PingPong(timerX * randomX, 1);
+        lensDistortion.intensityX.value = Mathf.Clamp(lensDistortion.intensityX.value, 0, 1);
+        lensDistortion.intensityY.value = Mathf.PingPong(timerY * randomY, 1);
+        lensDistortion.intensityY.value = Mathf.Clamp(lensDistortion.intensityY.value, 0, 1);
+        timerX += Time.deltaTime;
+        timerY += Time.deltaTime;
+    }
+
+    void DesableDrug()
+    {
+        timerX = 0;
+        timerY = 0;
+        Camera.main.GetComponent<ImageEffect>().enabled = false;
+        if (chromaticAberration.intensity.value > 0)
+        {
+            chromaticAberration.intensity.value -= 0.01f;
+        }
+        if (lensDistortion.intensityX.value > 0)
+        {
+            lensDistortion.intensityX.value -= 0.01f;
+        }
+        if (lensDistortion.intensityY.value > 0)
+        {
+            lensDistortion.intensityY.value -= 0.01f;
+        }
+    }
 
     IEnumerator Fake90()
     {
@@ -279,14 +349,12 @@ public class SnailAvatar : MonoBehaviour
         this.GetComponent<MeshCollider>().isTrigger = true;
         for (int i = 0; i < fakeSpeed; i++)
         {
-            transform.Rotate(90/fakeSpeed, 0, 0);
+            transform.Rotate(90 / fakeSpeed, 0, 0);
             Moving();
-            yield return new WaitForSeconds(1/fakeSpeed);
+            yield return new WaitForSeconds(1 / fakeSpeed);
         }
 
         inFakeRotation = false;
         this.GetComponent<MeshCollider>().isTrigger = false;
     }
-        
-
 }
