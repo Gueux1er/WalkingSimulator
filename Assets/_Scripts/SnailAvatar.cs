@@ -7,8 +7,6 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class SnailAvatar : MonoBehaviour
 {
-
-
     bool touchingTheFloor = false;
     bool inFakeRotation = false;
     bool modeSlide = false;
@@ -17,6 +15,8 @@ public class SnailAvatar : MonoBehaviour
 
     [SerializeField] Vector3 gravityOrientation;
     Vector3 gravityToGive = -Vector3.up * 9.81f;
+
+
 
     bool noMove = false;
     bool drugEnable = false;
@@ -55,9 +55,19 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] float fakeSpeed;
     [SerializeField] float speedOfSlide;
 
+
     [SerializeField] PostProcessVolume pPV;
     ChromaticAberration chromaticAberration;
     LensDistortion lensDistortion;
+
+    [SerializeField]
+    bool gameStartFadeInActivation = false;
+    [SerializeField]
+    float gameStartFadeInDelay = 4.0f;
+    [SerializeField]
+    float gameStartFadeInDuration = 3.0f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -68,8 +78,14 @@ public class SnailAvatar : MonoBehaviour
         speedOfSnailInGame = speedOfSnail;
         speedOfSnailRotationInGame = speedOfSnailRotation;
 
+
         pPV.profile.TryGetSettings(out chromaticAberration);
         pPV.profile.TryGetSettings(out lensDistortion);
+
+        if (gameStartFadeInActivation)
+        {
+            StartCoroutine(FadeInStart());
+        }
     }
 
     // Update is called once per frame
@@ -186,6 +202,21 @@ public class SnailAvatar : MonoBehaviour
         noMove = false;
     }
 
+    IEnumerator FadeInStart()
+    {
+        noMove = true;
+
+        fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1.0f);
+        yield return new WaitForSeconds(gameStartFadeInDelay);
+
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f - ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        noMove = false;
+    }
 
     void ChangePhysicInteraction(bool ice)
     {
