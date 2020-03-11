@@ -150,6 +150,26 @@ public class SnailAvatar : MonoBehaviour
         noMove = false;
     }
 
+    public IEnumerator Teleport(Transform target)
+    {
+        noMove = true;
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        transform.position = target.position;
+        transform.rotation = target.rotation;
+
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f - ((float)i / 100f));
+            yield return new WaitForSeconds(0.01f);
+        }
+        noMove = false;
+    }
+
 
     void ChangePhysicInteraction(bool ice)
     {
