@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using DG.Tweening;
 
 public class TriggerBridgeLeaf : MonoBehaviour
 {
@@ -29,12 +30,19 @@ public class TriggerBridgeLeaf : MonoBehaviour
     {
         hardWindEventEmitter.Play();
 
+        int count = 0;
+
         for (int i = 0; i < leafList.Count; i++)
         {
-            leafList[i].GetComponent<Collider>().enabled = false;
-            leafList[i].GetComponent<Rigidbody>().useGravity = true;
-            leafList[i].GetComponent<Rigidbody>().isKinematic = false;
-            leafList[i].GetComponent<Rigidbody>().AddForce(new Vector3(0, 5f, -7f), ForceMode.VelocityChange);
+            DOVirtual.DelayedCall(Random.Range(0f, 1.5f), () =>
+            {
+                leafList[count].GetComponent<Collider>().enabled = false;
+                leafList[count].GetComponent<Rigidbody>().useGravity = true;
+                leafList[count].GetComponent<Rigidbody>().isKinematic = false;
+                leafList[count].GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-14f, -21f), 20f, Random.Range(10f, 18f)) * Random.Range(0.8f, 1.2f), ForceMode.VelocityChange);
+                leafList[count].GetComponent<Rigidbody>().angularVelocity = new Vector3(Random.Range(0.2f, 0.4f), Random.Range(0.8f, 1f), Random.Range(0.2f, 0.4f));
+                count++;
+            });
         }
     }
 
