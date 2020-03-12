@@ -17,7 +17,7 @@ public class AntGenerator : MonoBehaviour
 
     IEnumerator SpawnOfAnt()
     {
-        Instantiate(ant);
+        Instantiate(ant,this.transform);
 
         if (randomSpawn == false)
         {

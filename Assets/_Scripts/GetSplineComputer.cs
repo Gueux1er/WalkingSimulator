@@ -8,7 +8,7 @@ public class GetSplineComputer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SplineFollower>().spline = GameObject.Find("Spline").GetComponent<SplineComputer>();
+        GetComponent<SplineFollower>().spline = transform.parent.GetComponent<SplineComputer>();
     }
 
     // Update is called once per frame
