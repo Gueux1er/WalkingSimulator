@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
+using FMOD.Studio;
+using FMODUnity;
 
 public class SnailAvatar : MonoBehaviour
 {
@@ -16,7 +18,12 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] Vector3 gravityOrientation;
     Vector3 gravityToGive = -Vector3.up * 9.81f;
 
-
+    [EventRef]
+    public string snailMovementRef;
+    public EventInstance snailMovementEvent;
+    [EventRef]
+    public string snailSlidingRef;
+    public EventInstance snailSlidingEvent;
 
     bool noMove = false;
     bool drugEnable = false;
@@ -68,6 +75,7 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField]
     float gameStartFadeInDuration = 3.0f;
 
+    Vector3 lastPosition;
 
 
     // Start is called before the first frame update
@@ -79,7 +87,6 @@ public class SnailAvatar : MonoBehaviour
         speedOfSnailInGame = speedOfSnail;
         speedOfSnailRotationInGame = speedOfSnailRotation;
 
-
         pPV.profile.TryGetSettings(out chromaticAberration);
         pPV.profile.TryGetSettings(out lensDistortion);
         pPV.profile.TryGetSettings(out colorGrading);
@@ -88,6 +95,14 @@ public class SnailAvatar : MonoBehaviour
         {
             StartCoroutine(FadeInStart());
         }
+
+        snailMovementEvent = RuntimeManager.CreateInstance(snailMovementRef);
+        snailMovementEvent.start();
+        snailMovementEvent.setPaused(true);
+        snailSlidingEvent = RuntimeManager.CreateInstance(snailSlidingRef);
+        snailSlidingEvent.start();
+
+        lastPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -161,6 +176,12 @@ public class SnailAvatar : MonoBehaviour
         {
             Moving();
         }
+
+        snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
+        snailSlidingEvent.setParameterByName("SnailDelta", Input.GetKey(KeyCode.Space) ? (transform.position - lastPosition).magnitude * 30 : 0);
+
+        Debug.LogWarning((transform.position - lastPosition).magnitude * 30);
+        lastPosition = transform.position;
     }
 
     IEnumerator Die()
@@ -367,6 +388,8 @@ public class SnailAvatar : MonoBehaviour
         timerY += Time.deltaTime;
         gradingTemp += Time.deltaTime*25;
         gradingTint += Time.deltaTime*15;
+
+        snailMovementEvent.setParameterByName("Drug", 1);
     }
 
     void DesableDrug()
@@ -394,6 +417,8 @@ public class SnailAvatar : MonoBehaviour
         {
             colorGrading.temperature.value -= colorGrading.temperature.value * 0.01f;
         }
+
+        snailMovementEvent.setParameterByName("Drug", 0);
     }
 
     IEnumerator Fake90()

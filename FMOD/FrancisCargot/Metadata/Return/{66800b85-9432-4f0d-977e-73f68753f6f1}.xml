@@ -41,6 +41,9 @@
 		<property name="rate">
 			<value>9</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{05a341c2-567f-4ea1-bf54-411bf7eca210}</destination>
+		</relationship>
 	</object>
 	<object class="TremoloEffect" id="{05cbfb34-79dc-4327-98aa-e5a7b19e7645}">
 		<property name="frequency">
@@ -52,6 +55,31 @@
 		<property name="duty">
 			<value>0.50000006</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{27fcdd1f-98ea-40d2-a67c-394f3922b700}</destination>
+		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{daacd2fe-9647-4e1e-aa7c-aae5051039d9}" />
+	<object class="LFOModulator" id="{05a341c2-567f-4ea1-bf54-411bf7eca210}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>rate</value>
+		</property>
+		<property name="rate">
+			<value>0.195000008</value>
+		</property>
+		<property name="depth">
+			<value>18</value>
+		</property>
+	</object>
+	<object class="LFOModulator" id="{27fcdd1f-98ea-40d2-a67c-394f3922b700}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>frequency</value>
+		</property>
+		<property name="rate">
+			<value>0.145000011</value>
+		</property>
+		<property name="depth">
+			<value>25</value>
+		</property>
+	</object>
 </objects>
