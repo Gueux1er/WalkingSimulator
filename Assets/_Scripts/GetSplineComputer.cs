@@ -6,9 +6,10 @@ using Dreamteck.Splines;
 public class GetSplineComputer : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        GetComponent<SplineFollower>().spline = GameObject.Find("Spline").GetComponent<SplineComputer>();
+        print("getspline");
+        GetComponent<SplineFollower>().spline = transform.parent.GetChild(0).GetComponent<SplineComputer>();
     }
 
     // Update is called once per frame
