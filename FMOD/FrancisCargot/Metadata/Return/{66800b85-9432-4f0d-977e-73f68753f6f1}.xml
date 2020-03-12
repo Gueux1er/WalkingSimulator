@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.00.00">
 	<object class="MixerReturn" id="{66800b85-9432-4f0d-977e-73f68753f6f1}">
-		<property name="volume">
-			<value>3</value>
-		</property>
 		<property name="name">
 			<value>Drug</value>
 		</property>

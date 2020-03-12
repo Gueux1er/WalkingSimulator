@@ -36,7 +36,7 @@ public class TriggerBridgeLeaf : MonoBehaviour
         {
             DOVirtual.DelayedCall(Random.Range(0f, 1.5f), () =>
             {
-                leafList[count].GetComponent<Collider>().enabled = false;
+                //leafList[count].GetComponent<Collider>().enabled = false;
                 leafList[count].GetComponent<Rigidbody>().useGravity = true;
                 leafList[count].GetComponent<Rigidbody>().isKinematic = false;
                 leafList[count].GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-14f, -21f), 20f, Random.Range(10f, 18f)) * Random.Range(0.8f, 1.2f), ForceMode.VelocityChange);
