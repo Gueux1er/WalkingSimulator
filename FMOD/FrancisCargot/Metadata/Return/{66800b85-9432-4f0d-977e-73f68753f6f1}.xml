@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="MixerReturn" id="{66800b85-9432-4f0d-977e-73f68753f6f1}">
+		<property name="volume">
+			<value>3</value>
+		</property>
+		<property name="name">
+			<value>Drug</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{209664aa-fded-4d7e-8802-af011ef12e29}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{41ab0d3e-eae1-4cc7-a1e1-94d472f07fda}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{643b411a-c5cd-4c63-9e44-8aec8c2b97fb}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{209664aa-fded-4d7e-8802-af011ef12e29}">
+		<relationship name="effects">
+			<destination>{cded70a6-c9d0-4645-949f-d9da918e3e34}</destination>
+			<destination>{469d21e6-f09e-4bee-8e77-d364e788cb8f}</destination>
+			<destination>{05cbfb34-79dc-4327-98aa-e5a7b19e7645}</destination>
+			<destination>{daacd2fe-9647-4e1e-aa7c-aae5051039d9}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{41ab0d3e-eae1-4cc7-a1e1-94d472f07fda}" />
+	<object class="PitchShifterEffect" id="{cded70a6-c9d0-4645-949f-d9da918e3e34}">
+		<property name="pitch">
+			<value>0.900000036</value>
+		</property>
+		<property name="fftSize">
+			<value>256</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+	</object>
+	<object class="FlangerEffect" id="{469d21e6-f09e-4bee-8e77-d364e788cb8f}">
+		<property name="rate">
+			<value>9</value>
+		</property>
+	</object>
+	<object class="TremoloEffect" id="{05cbfb34-79dc-4327-98aa-e5a7b19e7645}">
+		<property name="frequency">
+			<value>1</value>
+		</property>
+		<property name="depth">
+			<value>0.695000052</value>
+		</property>
+		<property name="duty">
+			<value>0.50000006</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{daacd2fe-9647-4e1e-aa7c-aae5051039d9}" />
+</objects>
