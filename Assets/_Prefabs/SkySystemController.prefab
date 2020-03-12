@@ -180,7 +180,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2490719803624322584}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 119.022156, y: 126.24667, z: 127.48764}
+  m_LocalPosition: {x: 137.25, y: 126.42667, z: 142.72667}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2490719804490650629}
@@ -319,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2490719803817912901}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 110.51711, y: 9.58, z: 86.698235}
+  m_LocalPosition: {x: 137.25, y: 9.76, z: 101.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2490719804490650629}
@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2490719804638721624}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 110.51711, y: 9.58, z: 86.698235}
+  m_LocalPosition: {x: 137.25, y: 9.76, z: 101.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2490719805120739308}
@@ -974,10 +974,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SkyProfile: {fileID: 11400000, guid: 4b4d04d19e0caed40b02fdd5f220f8d3, type: 2}
-  m_SkyTime: 0.38568935
-  automaticTimeIncrement: 1
+  m_SkyTime: 0
+  automaticTimeIncrement: 0
   copySkyProfile: 0
-  automaticIncrementSpeed: 0.028
+  automaticIncrementSpeed: 0
   sunOrbit: {fileID: 2490719804893972980}
   moonOrbit: {fileID: 2490719803527148451}
   weatherController: {fileID: 2490719804490650630}
