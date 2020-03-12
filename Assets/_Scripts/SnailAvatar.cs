@@ -241,7 +241,7 @@ public class SnailAvatar : MonoBehaviour
         if (modeSlide == true)
         {
             rb.AddForce(Physics.gravity * speedOfSlide);
-            rb.AddForce(gravityToGive);
+            rb.AddForce(gravityToGive* (1/powerOfGravity));
         }
         else
         {
