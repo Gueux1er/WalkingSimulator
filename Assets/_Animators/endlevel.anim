@@ -64,15 +64,15 @@ AnimationClip:
         time: 5.016667
         value: {x: 0, y: 0, z: 0}
         inSlope: {x: -0, y: -0, z: -0}
-        outSlope: {x: 0, y: -23.257483, z: 0}
+        outSlope: {x: 0, y: -17.346527, z: 0}
         tangentMode: 0
         weightedMode: 0
         inWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
-        outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
+        outWeight: {x: 0.33333334, y: 0.1718908, z: 0.33333334}
       - serializedVersion: 3
-        time: 19.983334
+        time: 25.083334
         value: {x: 0, y: -348.087, z: 0}
-        inSlope: {x: 0, y: -23.257483, z: 0}
+        inSlope: {x: 0, y: -17.346527, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
         weightedMode: 0
@@ -180,7 +180,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 19.983334
+    m_StopTime: 25.083334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -440,7 +440,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.983334
+        time: 25.083334
         value: 0
         inSlope: 0
         outSlope: 0
@@ -471,15 +471,15 @@ AnimationClip:
         time: 5.016667
         value: 0
         inSlope: -0
-        outSlope: -23.257483
+        outSlope: -17.346527
         tangentMode: 69
         weightedMode: 0
         inWeight: 0.33333334
-        outWeight: 0.33333334
+        outWeight: 0.1718908
       - serializedVersion: 3
-        time: 19.983334
+        time: 25.083334
         value: -348.087
-        inSlope: -23.257483
+        inSlope: -17.346527
         outSlope: 0
         tangentMode: 5
         weightedMode: 0
@@ -509,12 +509,12 @@ AnimationClip:
         value: 0
         inSlope: -0
         outSlope: 0
-        tangentMode: 69
+        tangentMode: 5
         weightedMode: 0
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 19.983334
+        time: 25.083334
         value: 0
         inSlope: 0
         outSlope: 0

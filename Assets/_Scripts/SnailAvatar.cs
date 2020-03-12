@@ -59,6 +59,7 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] PostProcessVolume pPV;
     ChromaticAberration chromaticAberration;
     LensDistortion lensDistortion;
+    ColorGrading colorGrading;
 
     [SerializeField]
     bool gameStartFadeInActivation = false;
@@ -81,6 +82,7 @@ public class SnailAvatar : MonoBehaviour
 
         pPV.profile.TryGetSettings(out chromaticAberration);
         pPV.profile.TryGetSettings(out lensDistortion);
+        pPV.profile.TryGetSettings(out colorGrading);
 
         if (gameStartFadeInActivation)
         {
@@ -335,31 +337,42 @@ public class SnailAvatar : MonoBehaviour
         }
     }
 
-    float randomX = 0.5f;
-    float randomY = 1f;
+
+    #region RandomDrugVar
+    float randomX = 0.25f;
+    float randomY = 0.5f;
     float timerX = 0f;
     float timerY = 0f;
+    float gradingTemp = 100f;
+    float gradingTint = 100f;
+
+    #endregion
+
+    [SerializeField] AnimationCurve curve;
 
     void randomDrug()
     {
-        Camera.main.GetComponent<ImageEffect>().enabled = true;
         if (chromaticAberration.intensity.value < 1)
         {
             chromaticAberration.intensity.value += 0.01f;
         }
-        lensDistortion.intensityX.value = Mathf.PingPong(timerX * randomX, 1);
-        lensDistortion.intensityX.value = Mathf.Clamp(lensDistortion.intensityX.value, 0, 1);
-        lensDistortion.intensityY.value = Mathf.PingPong(timerY * randomY, 1);
-        lensDistortion.intensityY.value = Mathf.Clamp(lensDistortion.intensityY.value, 0, 1);
+        lensDistortion.intensityX.value = curve.Evaluate( Mathf.PingPong(timerX * randomX, 1));
+        print(lensDistortion.intensityX.value);
+        lensDistortion.intensityY.value = curve.Evaluate( Mathf.PingPong(timerY * randomY, 1));
+
+        colorGrading.temperature.value = Mathf.PingPong(gradingTemp, 200f) - 100f;
+        colorGrading.tint.value = - (Mathf.PingPong(gradingTint, 200f) - 100f);
+
         timerX += Time.deltaTime;
         timerY += Time.deltaTime;
+        gradingTemp += Time.deltaTime*25;
+        gradingTint += Time.deltaTime*15;
     }
 
     void DesableDrug()
     {
         timerX = 0;
         timerY = 0;
-        Camera.main.GetComponent<ImageEffect>().enabled = false;
         if (chromaticAberration.intensity.value > 0)
         {
             chromaticAberration.intensity.value -= 0.01f;
@@ -371,6 +384,15 @@ public class SnailAvatar : MonoBehaviour
         if (lensDistortion.intensityY.value > 0)
         {
             lensDistortion.intensityY.value -= 0.01f;
+        }
+
+        if (colorGrading.tint.value != 0)
+        {
+            colorGrading.tint.value -= colorGrading.tint.value * 0.01f;
+        }
+        if (colorGrading.temperature.value != 0)
+        {
+            colorGrading.temperature.value -= colorGrading.temperature.value * 0.01f;
         }
     }
 
