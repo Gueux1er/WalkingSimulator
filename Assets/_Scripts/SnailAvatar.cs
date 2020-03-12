@@ -54,7 +54,7 @@ public class SnailAvatar : MonoBehaviour
     float speedOfSnailRotationInGame;
     [SerializeField] float fakeSpeed;
     [SerializeField] float speedOfSlide;
-
+    [SerializeField] GameObject cameraController;
 
     [SerializeField] PostProcessVolume pPV;
     ChromaticAberration chromaticAberration;
@@ -258,9 +258,9 @@ public class SnailAvatar : MonoBehaviour
     void Moving()
     {
         rb.MovePosition(transform.forward * speedOfSnail * Time.deltaTime + transform.position);
-        float rotationOnCamera = Camera.main.transform.localRotation.y * speedOfSnailRotation * Time.deltaTime;
+        float rotationOnCamera = cameraController.transform.localRotation.y * speedOfSnailRotation * Time.deltaTime;
         transform.Rotate(0, rotationOnCamera, 0);
-        Camera.main.GetComponent<CameraController>().rotY -= rotationOnCamera;
+        cameraController.GetComponent<CameraController>().rotY -= rotationOnCamera;
         AddPositionRemember();
     }
 
