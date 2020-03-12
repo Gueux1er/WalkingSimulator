@@ -29,7 +29,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4148104902975732107}
-  m_LocalRotation: {x: -0.23368935, y: 0.35668075, z: -0.036328606, w: 0.9037966}
+  m_LocalRotation: {x: -0.2336923, y: 0.3566805, z: -0.036325656, w: 0.90379614}
   m_LocalPosition: {x: 104.275, y: 2.849, z: 74.633}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children:
@@ -152,7 +152,7 @@ MonoBehaviour:
   speedOfSnail: 0.5
   speedOfSnailRotation: 100
   fakeSpeed: 100
-  speedOfSlide: 0.05
+  speedOfSlide: 0.5
   cameraController: {fileID: 8954745659590164459}
   pPV: {fileID: 0}
   gameStartFadeInActivation: 0
