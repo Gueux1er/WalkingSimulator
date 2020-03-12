@@ -343,8 +343,8 @@ public class SnailAvatar : MonoBehaviour
     float randomY = 0.5f;
     float timerX = 0f;
     float timerY = 0f;
-    float gradingTemp = 100f;
-    float gradingTint = 100f;
+    float gradingTemp = 101f;
+    float gradingTint = 110f;
 
     #endregion
 
@@ -386,13 +386,13 @@ public class SnailAvatar : MonoBehaviour
             lensDistortion.intensityY.value -= 0.01f;
         }
 
-        if (colorGrading.tint.value != 0)
+        if (colorGrading.tint.value != 10)
         {
-            colorGrading.tint.value -= colorGrading.tint.value * 0.01f;
+            colorGrading.tint.value += (10 - colorGrading.tint.value)*0.05f;
         }
-        if (colorGrading.temperature.value != 0)
+        if (colorGrading.temperature.value != 1)
         {
-            colorGrading.temperature.value -= colorGrading.temperature.value * 0.01f;
+            colorGrading.temperature.value += (1 - colorGrading.temperature.value) * 0.05f;
         }
     }
 
