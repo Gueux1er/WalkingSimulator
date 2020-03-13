@@ -26,6 +26,6 @@ public class UphillEvent : MonoBehaviour
             return;
         }
 
-        uphillEvent.setParameterByName("Height", Mathf.Clamp(playerTransform.position.y, 0f, 5f) / 5f);
+        uphillEvent.setParameterByName("Height", (Mathf.Clamp(playerTransform.position.y, 4f, 7f) - 4f) / 3f);
     }
 }

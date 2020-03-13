@@ -24,6 +24,7 @@ public class SnailAvatar : MonoBehaviour
     [EventRef]
     public string snailSlidingRef;
     public EventInstance snailSlidingEvent;
+    public StudioGlobalParameterTrigger drugEventEmitter;
 
     bool noMove = false;
     bool drugEnable = false;
@@ -180,7 +181,6 @@ public class SnailAvatar : MonoBehaviour
         snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
         snailSlidingEvent.setParameterByName("SnailDelta", Input.GetKey(KeyCode.Space) ? (transform.position - lastPosition).magnitude * 30 : 0);
 
-        Debug.LogWarning((transform.position - lastPosition).magnitude * 30);
         lastPosition = transform.position;
     }
 
@@ -346,6 +346,15 @@ public class SnailAvatar : MonoBehaviour
     {
         if (other.tag == "Mushroom")
         {
+            if (!drugEnable)
+            {
+                if (DrugParameterLerpCoco != null)
+                {
+                    StopCoroutine(DrugParameterLerpCoco);
+                }
+                DrugParameterLerpCoco = DrugParameterLerp(0.5f);
+                StartCoroutine(DrugParameterLerpCoco);
+            }
             drugEnable = true;
         }
     }
@@ -354,6 +363,15 @@ public class SnailAvatar : MonoBehaviour
     {
         if (other.tag == "Mushroom")
         {
+            if (drugEnable)
+            {
+                if (DrugParameterLerpCoco != null)
+                {
+                    StopCoroutine(DrugParameterLerpCoco);
+                }
+                DrugParameterLerpCoco = DrugParameterLerp(0f);
+                StartCoroutine(DrugParameterLerpCoco);
+            }
             drugEnable = false;
         }
     }
@@ -388,8 +406,6 @@ public class SnailAvatar : MonoBehaviour
         timerY += Time.deltaTime;
         gradingTemp += Time.deltaTime*25;
         gradingTint += Time.deltaTime*15;
-
-        snailMovementEvent.setParameterByName("Drug", 1);
     }
 
     void DesableDrug()
@@ -417,8 +433,20 @@ public class SnailAvatar : MonoBehaviour
         {
             colorGrading.temperature.value += (1 - colorGrading.temperature.value) * 0.05f;
         }
+    }
 
-        snailMovementEvent.setParameterByName("Drug", 0);
+    IEnumerator DrugParameterLerpCoco;
+    IEnumerator DrugParameterLerp(float goalValue)
+    {
+        float startTime = Time.time;
+        float currentValue = 0;
+        RuntimeManager.StudioSystem.getParameterByName("Drug", out currentValue);
+
+        while (Time.time - startTime < 1f)
+        {
+            RuntimeManager.StudioSystem.setParameterByName("Drug", Mathf.Lerp(currentValue, goalValue, Time.time - startTime));
+            yield return null;
+        }
     }
 
     IEnumerator Fake90()

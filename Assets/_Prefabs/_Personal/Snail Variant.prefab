@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6406755094616443120}
   - component: {fileID: 8954745660773082213}
   - component: {fileID: 8954745659222703909}
+  - component: {fileID: 2539322316699039353}
   m_Layer: 0
   m_Name: Snail Variant
   m_TagString: Player
@@ -142,6 +143,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 0}
   gravityOrientation: {x: 0, y: 1, z: 0}
+  snailMovementRef: event:/3_Animation/snail_movement
+  snailSlidingRef: event:/3_Animation/snail_sliding
+  drugEventEmitter: {fileID: 2539322316699039353}
   previousPosition: []
   normalMat: {fileID: 13400000, guid: 60e5978197e22f446876d1c4015f26a4, type: 2}
   iceMat: {fileID: 13400000, guid: b2932973059f5cb4e86fee8b83c3ca6e, type: 2}
@@ -182,6 +186,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2539322316699039353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148104902975732107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b0e04e2572f9a940a47465f6f3c2f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  parameter: Drug
+  TriggerEvent: 0
+  value: 0
 --- !u!1 &6406755093094813475
 GameObject:
   m_ObjectHideFlags: 0
