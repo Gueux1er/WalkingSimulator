@@ -76,15 +76,6 @@ public class MouvementAvatar : MonoBehaviour
         {
             mouvementSpeed -= mouvementSpeedBase;
         }
-
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            sliding = true;
-            onIsFeet = false;
-            StartCoroutine(JumpAndRecenter());
-        }
-
         /// Waypoint
         for (int i = 0; i < inputWaypoint.Length; i++)
         {
