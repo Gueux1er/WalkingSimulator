@@ -9,8 +9,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: CubemapDemoSkyboxMaterial
   m_Shader: {fileID: 4800000, guid: a449307a7b4cccf45b5b0e8cc47be915, type: 3}
-  m_ShaderKeywords: CUBEMAP_CLOUD_DOUBLE_LAYER CUBEMAP_CLOUD_FORMAT_RGBA CUBEMAP_NORMAL_CLOUD_DOUBLE_LAYER
-    SUN
+  m_ShaderKeywords: ' CUBEMAP_CLOUD_DOUBLE_LAYER CUBEMAP_CLOUD_FORMAT_RGBA CUBEMAP_NORMAL_CLOUD_DOUBLE_LAYER
+    SUN'
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

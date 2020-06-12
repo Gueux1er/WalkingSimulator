@@ -3,8 +3,9 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -40,6 +41,16 @@ MonoBehaviour:
       - Star1ColorKey
       - Star2ColorKey
       - Star3ColorKey
+      - CloudCubemapTintColorKey
+      - CloudCubemapDoubleLayerTintColorKey
+      - CloudCubemapNormalLitColorKey
+      - CloudCubemapNormalShadowColorKey
+      - CloudCubemapNormalDoubleLayerLitColorKey
+      - CloudCubemapNormalDoubleLayerShadowKey
+      - StarBasicTintColorKey
+      - RainTintColorKey
+      - RainSplashTintColorKey
+      - LightningTintColorKey
       m_Values:
       - keyframes:
         - m_Id: a9383e57-acea-4565-a7d8-6b6fccd42539
@@ -230,6 +241,86 @@ MonoBehaviour:
           color: {r: 1, g: 1, b: 1, a: 1}
         m_Name: Star 3 Color
         m_Id: 1755b0f1-19bc-45cd-a944-9733acbc7b51
+      - keyframes:
+        - m_Id: 6261d3b0-56e4-400a-a4ce-2ca93ce51cd7
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Cloud Cubemap Tint Color
+        m_Id: 9fd6b182-4eba-4e98-8229-c0bdbabcac48
+      - keyframes:
+        - m_Id: c7d5f04c-95cc-4253-9773-3c67966a8557
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Cloud Cubemap Double Layer Tint Color
+        m_Id: 0567cd20-b3c3-434b-9889-aa6ebe33d565
+      - keyframes:
+        - m_Id: 5ed0c688-cb74-478a-bccf-95372f669a02
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Cloud Lit - Light Color
+        m_Id: dee52d28-471c-492e-b50b-8303384b6747
+      - keyframes:
+        - m_Id: c7a1d083-1d1d-4c85-a3e6-88903c416ee7
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        m_Name: Cloud Lit - Shadow Color
+        m_Id: 66e02be5-1d17-42e5-9fe2-2abb9296704f
+      - keyframes:
+        - m_Id: 1993458a-5f7b-4072-a250-4bbe4c07c0b6
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Cloud Lit - Double Layer Lit Color
+        m_Id: 1223f490-ed4d-4643-a547-7fcba906ed62
+      - keyframes:
+        - m_Id: ecc8e4a2-86a6-4c51-8aa8-bb64cce90390
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+        m_Name: Cloud Lit - Double Layer Shadow Color
+        m_Id: dc2eb0b1-f990-4645-bd17-5a0b83aa7d67
+      - keyframes:
+        - m_Id: e4ea0582-1c85-47e9-998d-9db693dc7159
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Star Tint Color
+        m_Id: 4f6317d4-0eb3-41c1-8551-7591657be4c0
+      - keyframes:
+        - m_Id: 0709bed9-2da9-4dd5-8469-5020382e22b3
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Rain Tint Color
+        m_Id: 0dc13c8c-ddca-44d2-a0c7-241fc182c685
+      - keyframes:
+        - m_Id: 40221686-ba4a-48cb-bff2-985992c51421
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Splash Tint Color
+        m_Id: a243eb52-c170-4cc7-82d7-1eb5350968dd
+      - keyframes:
+        - m_Id: 40a1c97a-55d9-43ae-b62c-eeead80c592a
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          color: {r: 1, g: 1, b: 1, a: 1}
+        m_Name: Lightning Tint Color
+        m_Id: 11336d83-0abf-4d61-8df2-7812a2405246
     m_NumberGroup:
       m_Keys:
       - SkyMiddleColorPosition
@@ -328,6 +419,29 @@ MonoBehaviour:
       - LightningSpriteRowCountKey
       - LightningSpriteItemCountKey
       - LightningSpriteAnimationSpeedKey
+      - CloudCubemapRotationSpeedKey
+      - CloudCubemapHeightKey
+      - CloudCubemapDoubleLayerRotationSpeedKey
+      - CloudCubemapDoubleLayerHeightKey
+      - CloudCubemapNormalRotationSpeedKey
+      - CloudCubemapNormalHeightKey
+      - CloudCubemapNormalAmbientIntensityKey
+      - CloudCubemapNormalDoubleLayerRotationSpeedKey
+      - CloudCubemapNormalDoubleLayerHeightKey
+      - StarBasicTwinkleSpeedKey
+      - StarBasicTwinkleAmountKey
+      - StarBasicOpacityKey
+      - StarBasicExponentKey
+      - StarBasicIntensityKey
+      - RainNearTextureTiling
+      - RainFarTextureTiling
+      - RainWindTurbulenceKey
+      - RainWindTurbulenceSpeedKey
+      - RainSplashAreaStartKey
+      - RainSplashAreaLengthKey
+      - LightningProbabilityKey
+      - LightningStrikeCoolDown
+      - LightningIntensityKey
       m_Values:
       - keyframes:
         - m_Id: e323dde6-a410-4767-bc85-f394cf32bf06
@@ -513,7 +627,7 @@ MonoBehaviour:
         m_Name: Sun Bloom Intensity
         m_Id: b8542d43-2016-42c0-8da2-2605f1398994
         minValue: 1
-        maxValue: 10
+        maxValue: 25
       - keyframes:
         - m_Id: 65df8d01-ecc6-41b1-a7e2-abba2ab1ba51
           m_Time: 0.110730596
@@ -603,7 +717,7 @@ MonoBehaviour:
         m_Name: Moon Bloom Intensity
         m_Id: 4c938d61-4d32-41b9-a7f5-c14aadbd8ea8
         minValue: 1
-        maxValue: 10
+        maxValue: 25
       - keyframes:
         - m_Id: 7c9d9326-d19f-4353-a32f-14672422d8fe
           m_Time: 0.13013698
@@ -763,7 +877,7 @@ MonoBehaviour:
         m_Name: Star 1 Bloom Intensity
         m_Id: 7e4ff02a-9f89-4456-a222-389e47dd7e7b
         minValue: 1
-        maxValue: 10
+        maxValue: 25
       - keyframes:
         - m_Id: b9e6907f-bcd0-4a69-8784-e42d23053368
           m_Time: 0
@@ -848,7 +962,7 @@ MonoBehaviour:
         m_Name: Star 2 Bloom Intensity
         m_Id: 10f3b3a1-78e1-44c2-9945-9112a38909ef
         minValue: 1
-        maxValue: 10
+        maxValue: 25
       - keyframes:
         - m_Id: e4db7fdb-802e-4055-b627-049e4387112c
           m_Time: 0
@@ -918,7 +1032,7 @@ MonoBehaviour:
         m_Name: Star 3 Bloom Intensity
         m_Id: 80c68714-84d9-46ee-beb2-25446a2f730a
         minValue: 1
-        maxValue: 10
+        maxValue: 25
       - keyframes:
         - m_Id: 8f5e19c4-7da4-45dd-80c9-b1eef11d1dfc
           m_Time: 0
@@ -1178,7 +1292,7 @@ MonoBehaviour:
         m_Name: Rain Near Speed
         m_Id: 2aa08aec-a9ff-4af9-a141-7825f259efa6
         minValue: 0
-        maxValue: 3
+        maxValue: 5
       - keyframes:
         - m_Id: 42069425-371d-4865-8ece-30ead5890f82
           m_Time: 0
@@ -1188,7 +1302,7 @@ MonoBehaviour:
         m_Name: Rain Far Speed
         m_Id: 06947754-1a59-4067-8289-93d18afbf1b8
         minValue: 0
-        maxValue: 3
+        maxValue: 5
       - keyframes:
         - m_Id: 5761a579-59b0-42b0-b8d2-330fa895f87e
           m_Time: 0
@@ -1278,7 +1392,7 @@ MonoBehaviour:
         m_Name: Splash Scale
         m_Id: 9ebceaef-e9fb-454e-9a20-c4b2f7f00313
         minValue: 0.001
-        maxValue: 10
+        maxValue: 60
       - keyframes:
         - m_Id: e405f691-5f92-48d3-bb7a-649eb3cbcd33
           m_Time: 0
@@ -1379,6 +1493,236 @@ MonoBehaviour:
         m_Id: bd631b90-81b4-491a-a06c-cc791200480c
         minValue: 0
         maxValue: 100
+      - keyframes:
+        - m_Id: a4798450-383a-4a19-ba82-f3ff9671faa6
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.1
+        m_Name: Cloud Cubemap Rotation Speed
+        m_Id: c0a1e757-a379-4daf-9c70-0ef6bc3452bc
+        minValue: -0.5
+        maxValue: 0.5
+      - keyframes:
+        - m_Id: d471a168-b57c-4152-be41-3a0ceb40e639
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0
+        m_Name: Cloud Cubemap Height
+        m_Id: 05645708-9771-4810-aaf8-d8d531e88850
+        minValue: -1
+        maxValue: 1
+      - keyframes:
+        - m_Id: 67c2c82b-4849-4ad9-a8eb-a40f682e6aa0
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.15
+        m_Name: Cloud Cubemap Double Layer Rotation Speed
+        m_Id: adcfc9e1-a4b7-420a-9d15-ea2b0e273a05
+        minValue: -0.5
+        maxValue: 0.5
+      - keyframes:
+        - m_Id: 22ff3062-6a45-4c29-a631-95e7172a5bce
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0
+        m_Name: Cloud Cubemap Double Layer Height
+        m_Id: 30b87f46-07a9-4281-8772-a9d629fd42c1
+        minValue: -1
+        maxValue: 1
+      - keyframes:
+        - m_Id: b3cd2fdd-aaae-4152-ac98-4c5e62a5d995
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.1
+        m_Name: Cloud Lit - Rotation Speed
+        m_Id: 79b7fb43-bbc7-447c-9f47-978876c10957
+        minValue: -0.5
+        maxValue: 0.5
+      - keyframes:
+        - m_Id: 6527f85e-08c9-4114-95e5-c14271b9a390
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0
+        m_Name: Cloud Lit - Height
+        m_Id: e449ef6f-43ce-4908-a5d3-370c3a409c52
+        minValue: -1
+        maxValue: 1
+      - keyframes:
+        - m_Id: c279e912-19e9-46d6-9dab-077495fcad2b
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.1
+        m_Name: Cloud Lit - Ambient Intensity
+        m_Id: da600a06-5ff4-4fa6-8660-e15caad7462a
+        minValue: 0
+        maxValue: 1
+      - keyframes:
+        - m_Id: cd589183-fe92-4e30-984f-4ccffa490103
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.15
+        m_Name: Cloud Lit - Double Layer Rotation Speed
+        m_Id: e74aa3e9-e818-492e-a0c0-ac26aa5d14a0
+        minValue: -0.5
+        maxValue: 0.5
+      - keyframes:
+        - m_Id: 05d33671-7f0b-424d-b74f-501fbd1143e1
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0
+        m_Name: Cloud Lit - Double Layer Height
+        m_Id: 059f9a44-f0e4-45a2-a076-2a58372f46ba
+        minValue: -1
+        maxValue: 1
+      - keyframes:
+        - m_Id: c2f88fac-719e-480b-b8b0-cfcd70ad5001
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Star Twinkle Speed
+        m_Id: 9508e1b6-c3c2-4845-a5b9-b157b5bee26c
+        minValue: 0
+        maxValue: 10
+      - keyframes:
+        - m_Id: 1b114b55-cca8-4612-b799-4753f3389242
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.75
+        m_Name: Star Twinkle Amount
+        m_Id: cd568a54-3756-4d51-a76a-96380450c9d8
+        minValue: 0
+        maxValue: 1
+      - keyframes:
+        - m_Id: 0722de8b-0382-489c-b850-358387578a33
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Star Opacity
+        m_Id: 17388f8c-1247-4f73-af2c-0684c884df5c
+        minValue: 0
+        maxValue: 1
+      - keyframes:
+        - m_Id: aecdc7be-ad76-4a59-9501-ae9a7daeb2b9
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1.1
+        m_Name: Star Smoothing Exponent
+        m_Id: ca42cc5b-b441-4f7a-8f63-4c703994c9f5
+        minValue: 0.5
+        maxValue: 5
+      - keyframes:
+        - m_Id: 961b0a18-8864-44aa-8e95-d79d08ec25f5
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Star Bloom Intensity (HDR)
+        m_Id: 8779cede-6384-4d7f-a335-92de0c9b4bd5
+        minValue: 1
+        maxValue: 25
+      - keyframes:
+        - m_Id: 7b9fce18-9446-4187-b572-35f8e8144b4d
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Rain Near Texture Tiling
+        m_Id: f0d20f46-d8a7-49d9-b824-1c237de1487f
+        minValue: 0.01
+        maxValue: 20
+      - keyframes:
+        - m_Id: 8b1008d1-246e-4f88-b03c-b3f8bdf1cf62
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Rain Far Texture Tiling
+        m_Id: 09f378bf-f978-4880-a44e-ffc7063ed926
+        minValue: 0.01
+        maxValue: 20
+      - keyframes:
+        - m_Id: 3837b8fd-60de-4da2-982f-5602e1c00d29
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.2
+        m_Name: Rain Turbulence
+        m_Id: a6588bd6-4257-40d8-a269-9b46bffc132d
+        minValue: 0
+        maxValue: 1
+      - keyframes:
+        - m_Id: 5b5e75dd-2fb0-4347-99ee-eae71c1c0536
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.5
+        m_Name: Rain Turbulence Speed
+        m_Id: 2e3bf314-1cac-41e0-936c-cf9f4975a253
+        minValue: 0
+        maxValue: 2
+      - keyframes:
+        - m_Id: 158500bd-698a-43a5-a1ca-b90ae5b813c3
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1.5
+        m_Name: Splash Area Start
+        m_Id: 4c875b46-8852-40ce-8bcf-63b79c58c35b
+        minValue: 0
+        maxValue: 50
+      - keyframes:
+        - m_Id: 03758673-3ad3-468b-9f54-90eb54fa0a84
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 5.5
+        m_Name: Splash Area Length
+        m_Id: 905cf22b-0c36-42f9-b47b-804446274473
+        minValue: 0
+        maxValue: 40
+      - keyframes:
+        - m_Id: 9d912b42-1a17-4740-a2c1-1269ace860ca
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 0.2
+        m_Name: Lightning Probability
+        m_Id: 3570650b-08c8-4f14-962b-294f23eac857
+        minValue: 0
+        maxValue: 1
+      - keyframes:
+        - m_Id: a2fe280f-7b24-469b-9aee-654f38f8c809
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 2
+        m_Name: Lightning Cool Down
+        m_Id: 935714eb-4f1e-4aca-b44b-2af6ee9cd082
+        minValue: 0
+        maxValue: 30
+      - keyframes:
+        - m_Id: 1aa534a8-b438-4869-8fda-321c5bb54b0d
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          value: 1
+        m_Name: Lightning Intensity
+        m_Id: e5fc78e1-92e6-496f-b0c3-448710ed8190
+        minValue: 0
+        maxValue: 1
     m_TextureGroup:
       m_Keys:
       - SkyCubemapKey
@@ -1392,6 +1736,13 @@ MonoBehaviour:
       - RainFarTexture
       - RainSplashTextureKey
       - LightningTextureKey
+      - CloudCubemapTextureKey
+      - CloudCubemapDoubleLayerCustomTextureKey
+      - CloudCubemapNormalTextureKey
+      - CloudCubemapNormalDoubleLayerCustomTextureKey
+      - StarBasicCubemapKey
+      - RainNearTextureKey
+      - RainFarTextureKey
       m_Values:
       - keyframes:
         - m_Id: 3fa673a7-b006-4d00-8569-e35b098c31ba
@@ -1481,6 +1832,62 @@ MonoBehaviour:
           texture: {fileID: 0}
         m_Name: Lightning Sprite Texture
         m_Id: 65e55dde-e468-4ad8-90c0-965f9358dfc3
+      - keyframes:
+        - m_Id: a56deb1f-9647-4afe-8f52-6ec0fef5303c
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Cloud Cubemap
+        m_Id: 7f04b957-ca47-4fe7-95e4-055e4c85d560
+      - keyframes:
+        - m_Id: 1e4d7c10-eada-4bcb-b1d9-60b8afa4cd9d
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Cloud Cubemap Double Layer Cubemap
+        m_Id: f4349752-922f-4379-92fb-65d2e9fcaa81
+      - keyframes:
+        - m_Id: 00a81d53-71c5-497c-a0f5-9d8112c22b8c
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Cloud Lit Cubemap
+        m_Id: d3dd6ef2-bd79-4dd1-a3be-90f4c86af520
+      - keyframes:
+        - m_Id: da30bbf2-9856-4b4e-afd8-fb2028e75a52
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Cloud Lit - Double Layer Cubemap
+        m_Id: bd22d676-263f-478e-8050-fbed5a1c159c
+      - keyframes:
+        - m_Id: a98cc275-2af8-44a4-b55d-4b3b50691132
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Star Cubemap
+        m_Id: fca88002-ad54-4026-b12b-9383b5711db5
+      - keyframes:
+        - m_Id: 97467095-4917-4dde-8bb1-5ff5af6e8bfe
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Rain Near Texture
+        m_Id: fe1001e9-adeb-4d96-867e-79040c14f234
+      - keyframes:
+        - m_Id: f90ba05d-3081-46f9-b08d-f74a200d2d9e
+          m_Time: 0
+          m_InterpolationCurve: 0
+          m_InterpolationDirection: 0
+          texture: {fileID: 0}
+        m_Name: Rain Far Texture
+        m_Id: 17d6fd6e-2ebd-47fd-9cba-94d976653ed5
     m_SpherePointGroup:
       m_Keys:
       - SunPositionKey
@@ -1588,5 +1995,19 @@ MonoBehaviour:
     - StarLayer3SpriteSheetFeature
     - RainSoundFeature
     - ThunderFeature
-    m_Values: 0100000000000000000000000000000000000000000000000101
+    - MobileQualityFeature
+    - CloudFeature
+    - StarBasicFeature
+    - VertexGradientSkyFeature
+    - SunCustomTextureFeature
+    - CubemapCloudTextureFormatRGBAFeature
+    - CubemapCloudDoubleLayerFeature
+    - CubemapCloudDoubleLayerCubemap
+    - CubemapNormalCloudDoubleLayerFeature
+    m_Values: 0100000000000000000000000000000000000000000000000101000000000001000000
+  lightningArtSet: {fileID: 0}
+  rainSplashArtSet: {fileID: 0}
+  starLayer1DataTexture: {fileID: 0}
+  starLayer2DataTexture: {fileID: 0}
+  starLayer3DataTexture: {fileID: 0}
   m_ProfileVersion: 1

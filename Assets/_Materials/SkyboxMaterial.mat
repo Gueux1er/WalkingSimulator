@@ -10,7 +10,7 @@ Material:
   m_Name: SkyboxMaterial
   m_Shader: {fileID: 4800000, guid: a449307a7b4cccf45b5b0e8cc47be915, type: 3}
   m_ShaderKeywords: ' CLOUDS CUBEMAP_CLOUD_FORMAT_RGBA GRADIENT_BACKGROUND HORIZON_FOG
-    MOON_CUSTOM_TEXTURE NOISE_CLOUDS SUN SUN_CUSTOM_TEXTURE'
+    MOON_CUSTOM_TEXTURE NOISE_CLOUDS SUN_CUSTOM_TEXTURE'
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
