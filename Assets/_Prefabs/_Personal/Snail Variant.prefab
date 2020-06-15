@@ -134,7 +134,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 4000, y: 4000}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1713332433
 CanvasRenderer:
@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 4148104902975732107}
   m_LocalRotation: {x: -0.2336923, y: 0.3566805, z: -0.036325656, w: 0.90379614}
   m_LocalPosition: {x: 104.275, y: 2.849, z: 74.633}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.24999997, z: 0.25000003}
   m_Children:
   - {fileID: 6406755093094813500}
   - {fileID: 8954745659311750184}
@@ -336,14 +336,21 @@ MonoBehaviour:
   gameStartFadeInActivation: 1
   gameStartFadeInDelay: 4
   gameStartFadeInDuration: 3
-  speedOfZoomInAndOut: 2
-  gaze: {fileID: 1713332431}
-  valueMaxUI: 7
-  valueMinUI: 1
+  yPosToDeath: 3.2
+  speedOfZoomInAndOut: 0.5
+  gaze: {fileID: 1713332430}
   valueMaxFieldOfView: 80
-  valueMinFieldOfView: 20
+  valueMinFieldOfView: 40
   valueMaxFocal: 45
   valueMinFocal: 1
+  inputWaypoint: 010100000201000003010000040100000501000006010000
+  positionWaypoint:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   curve:
     serializedVersion: 2
     m_Curve:

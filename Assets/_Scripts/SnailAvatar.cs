@@ -78,25 +78,30 @@ public class SnailAvatar : MonoBehaviour
 
     Vector3 lastPosition;
 
+    [SerializeField] float yPosToDeath;
+    bool insideThePipe = false;
+
     [Header("Zoom")]
     [SerializeField] float speedOfZoomInAndOut;
     int stepInTheZoom =0;
-    [SerializeField] RectTransform gaze;
-    [SerializeField] int valueMaxUI = 7;
-    [SerializeField] int valueMinUI = 1;
+    [SerializeField] GameObject gaze;
     [SerializeField] int valueMaxFieldOfView;
     [SerializeField] int valueMinFieldOfView;
     [SerializeField] int valueMaxFocal;
     [SerializeField] int valueMinFocal;
     DepthOfField depthOfField;
-    bool stopZoom = false;
+    bool stopZoom = true;
+
+    [Header("WayPoint")]
+    [SerializeField] KeyCode[] inputWaypoint;
+    [SerializeField] Transform[] positionWaypoint;
 
 
     // Start is called before the first frame update
     void Start()
     {
         Camera.main.fieldOfView = valueMaxFieldOfView;
-        gaze.localScale = new Vector3(valueMaxUI, valueMaxUI, 0);
+        gaze.SetActive(false);
         baseCollider = GetComponent<MeshCollider>();
         slideCollider = GetComponent<BoxCollider>();
 
@@ -126,7 +131,11 @@ public class SnailAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(stepInTheZoom);
+        if (this.transform.localPosition.y < yPosToDeath && insideThePipe == false)
+        {
+            print("die");
+            StartCoroutine(Die());
+        }
         if (modeSlide == true)
         {
             AddPositionRemember();
@@ -154,7 +163,7 @@ public class SnailAvatar : MonoBehaviour
             speedOfSnail += speedOfSnailInGame;
             speedOfSnailRotation += speedOfSnailRotationInGame;
         }
-        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnailInGame > speedOfSnailRotationInGame)
+        if (Input.GetKeyDown(KeyCode.KeypadMinus) && speedOfSnail > speedOfSnailInGame)
         {
             speedOfSnail -= speedOfSnailInGame;
         }
@@ -190,14 +199,20 @@ public class SnailAvatar : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            stopZoom = false;
-            StartCoroutine(SetZoomVision());
+            StartCoroutine(SetZoomVision (stopZoom));
+            stopZoom = !stopZoom;
         }
-        if (Input.GetKeyUp(KeyCode.E))
+
+        for (int i = 0; i < inputWaypoint.Length; i++)
         {
-            stopZoom = true;
-            StartCoroutine(SetNormalVision());
+            if (Input.GetKeyDown(inputWaypoint[i]))
+            {
+                transform.position = positionWaypoint[i].position;
+                transform.rotation = positionWaypoint[i].rotation;
+                InstantNewGravity();
+            }
         }
+
 
 
         snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
@@ -207,43 +222,35 @@ public class SnailAvatar : MonoBehaviour
     }
 
 
-    IEnumerator SetNormalVision()
-    {
-        int i = stepInTheZoom;
-        for (stepInTheZoom = i; stepInTheZoom > 0; stepInTheZoom--)
-        {
-            if (stopZoom == false)
-            {
-                break;
-            }
-            float scaleValue = valueMaxUI - (valueMaxUI - valueMinUI) * (float)stepInTheZoom / 100f;
-            gaze.localScale = new Vector3(scaleValue, scaleValue, 0);
-            Camera.main.fieldOfView = valueMaxFieldOfView - (valueMaxFieldOfView - valueMinFieldOfView) * (float)stepInTheZoom / 100f;
-            depthOfField.focalLength.value = valueMaxFocal - (valueMaxFocal - valueMinFocal) * (float)stepInTheZoom / 100f;
-            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
-        }
+    
 
-        noMove = false;
-        yield return null;
-    }
-
-    IEnumerator SetZoomVision()
+    IEnumerator SetZoomVision(bool v)
     {
         noMove = true;
-        int i = stepInTheZoom;
-        for (stepInTheZoom = i; stepInTheZoom < 100; stepInTheZoom++)
+        for (int i =0; i <100; i++)
         {
-            if (stopZoom == true)
-            {
-                break;
-            }
-            float scaleValue = valueMaxUI - (valueMaxUI - valueMinUI) * (float)stepInTheZoom / 100f;
-            gaze.localScale = new Vector3(scaleValue, scaleValue, 0);
-            Camera.main.fieldOfView = valueMaxFieldOfView - (valueMaxFieldOfView - valueMinFieldOfView) * (float)stepInTheZoom / 100f;
-            depthOfField.focalLength.value = valueMaxFocal - (valueMaxFocal - valueMinFocal) * (float)stepInTheZoom / 100f;
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, (float)i / 100f);
             yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
         }
-        yield return null;
+        if (v == true)
+        {
+            gaze.SetActive(true);
+            Camera.main.fieldOfView = valueMinFieldOfView;
+            depthOfField.focalLength.value = valueMinFocal;
+        }
+        else
+        {
+            gaze.SetActive(false);
+            Camera.main.fieldOfView = valueMaxFieldOfView;
+            depthOfField.focalLength.value = valueMaxFocal;
+            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+        }
+        for (int i = 0; i < 100; i++)
+        {
+            fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1 - (float)i / 100f);
+            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+        }
+        noMove = false;
     }
 
     IEnumerator Die()
@@ -431,9 +438,10 @@ public class SnailAvatar : MonoBehaviour
             }
             drugEnable = true;
         }
-        if(other.tag == "Water")
+
+        if (other.tag == "Entry")
         {
-            StartCoroutine(Die());
+            insideThePipe = true;
         }
     }
 
@@ -451,6 +459,10 @@ public class SnailAvatar : MonoBehaviour
                 StartCoroutine(DrugParameterLerpCoco);
             }
             drugEnable = false;
+        }
+        if (other.tag == "Exit")
+        {
+            insideThePipe = false;
         }
     }
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Water
   - Mushroom
+  - Entry
+  - Exit
   layers:
   - Default
   - TransparentFX
