@@ -8,7 +8,6 @@ public class GetSplineComputer : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        print("getspline");
         GetComponent<SplineFollower>().spline = transform.parent.GetChild(0).GetComponent<SplineComputer>();
     }
 

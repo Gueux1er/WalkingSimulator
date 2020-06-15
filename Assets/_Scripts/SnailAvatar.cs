@@ -78,10 +78,25 @@ public class SnailAvatar : MonoBehaviour
 
     Vector3 lastPosition;
 
+    [Header("Zoom")]
+    [SerializeField] float speedOfZoomInAndOut;
+    int stepInTheZoom =0;
+    [SerializeField] RectTransform gaze;
+    [SerializeField] int valueMaxUI = 7;
+    [SerializeField] int valueMinUI = 1;
+    [SerializeField] int valueMaxFieldOfView;
+    [SerializeField] int valueMinFieldOfView;
+    [SerializeField] int valueMaxFocal;
+    [SerializeField] int valueMinFocal;
+    DepthOfField depthOfField;
+    bool stopZoom = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        Camera.main.fieldOfView = valueMaxFieldOfView;
+        gaze.localScale = new Vector3(valueMaxUI, valueMaxUI, 0);
         baseCollider = GetComponent<MeshCollider>();
         slideCollider = GetComponent<BoxCollider>();
 
@@ -91,6 +106,8 @@ public class SnailAvatar : MonoBehaviour
         pPV.profile.TryGetSettings(out chromaticAberration);
         pPV.profile.TryGetSettings(out lensDistortion);
         pPV.profile.TryGetSettings(out colorGrading);
+        pPV.profile.TryGetSettings(out depthOfField);
+        depthOfField.focalLength.value = valueMaxFocal;
 
         if (gameStartFadeInActivation)
         {
@@ -109,6 +126,7 @@ public class SnailAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(stepInTheZoom);
         if (modeSlide == true)
         {
             AddPositionRemember();
@@ -172,7 +190,13 @@ public class SnailAvatar : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-
+            stopZoom = false;
+            StartCoroutine(SetZoomVision());
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            stopZoom = true;
+            StartCoroutine(SetNormalVision());
         }
 
 
@@ -182,8 +206,43 @@ public class SnailAvatar : MonoBehaviour
         lastPosition = transform.position;
     }
 
+
+    IEnumerator SetNormalVision()
+    {
+        int i = stepInTheZoom;
+        for (stepInTheZoom = i; stepInTheZoom > 0; stepInTheZoom--)
+        {
+            if (stopZoom == false)
+            {
+                break;
+            }
+            float scaleValue = valueMaxUI - (valueMaxUI - valueMinUI) * (float)stepInTheZoom / 100f;
+            gaze.localScale = new Vector3(scaleValue, scaleValue, 0);
+            Camera.main.fieldOfView = valueMaxFieldOfView - (valueMaxFieldOfView - valueMinFieldOfView) * (float)stepInTheZoom / 100f;
+            depthOfField.focalLength.value = valueMaxFocal - (valueMaxFocal - valueMinFocal) * (float)stepInTheZoom / 100f;
+            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+        }
+
+        noMove = false;
+        yield return null;
+    }
+
     IEnumerator SetZoomVision()
     {
+        noMove = true;
+        int i = stepInTheZoom;
+        for (stepInTheZoom = i; stepInTheZoom < 100; stepInTheZoom++)
+        {
+            if (stopZoom == true)
+            {
+                break;
+            }
+            float scaleValue = valueMaxUI - (valueMaxUI - valueMinUI) * (float)stepInTheZoom / 100f;
+            gaze.localScale = new Vector3(scaleValue, scaleValue, 0);
+            Camera.main.fieldOfView = valueMaxFieldOfView - (valueMaxFieldOfView - valueMinFieldOfView) * (float)stepInTheZoom / 100f;
+            depthOfField.focalLength.value = valueMaxFocal - (valueMaxFocal - valueMinFocal) * (float)stepInTheZoom / 100f;
+            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+        }
         yield return null;
     }
 
