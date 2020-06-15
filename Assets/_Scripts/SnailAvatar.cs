@@ -155,33 +155,36 @@ public class SnailAvatar : MonoBehaviour
             print("A");
             StartCoroutine(Die());
         }
-
-
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             modeSlide = true;
             ChangePhysicInteraction(modeSlide);
-
         }
-
         if (Input.GetKeyUp(KeyCode.Space))
         {
             modeSlide = false;
             ChangePhysicInteraction(modeSlide);
             rb.velocity = Vector3.zero;
         }
-
-
         if (Input.GetKey(KeyCode.Z) && modeSlide == false && noMove == false)
         {
             Moving();
         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+        }
+
 
         snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
         snailSlidingEvent.setParameterByName("SnailDelta", Input.GetKey(KeyCode.Space) ? (transform.position - lastPosition).magnitude * 30 : 0);
 
         lastPosition = transform.position;
+    }
+
+    IEnumerator SetZoomVision()
+    {
+        yield return null;
     }
 
     IEnumerator Die()
@@ -195,6 +198,8 @@ public class SnailAvatar : MonoBehaviour
 
         transform.position = previousPosition[0].pos;
         transform.rotation = previousPosition[0].orientation;
+        InstantNewGravity();
+        ChangeGravity();
         previousPosition.Clear();
 
         for (int i = 0; i < 100; i++)
@@ -203,6 +208,7 @@ public class SnailAvatar : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
         noMove = false;
+        
     }
 
     public IEnumerator Teleport(Transform target)
@@ -297,6 +303,15 @@ public class SnailAvatar : MonoBehaviour
         }
     }
 
+    void InstantNewGravity()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, transform.localScale.y + 5f))
+        {
+            gravityOrientation = hit.normal;
+        }
+    }
+
 
     void CheckFloor()
     {
@@ -356,6 +371,10 @@ public class SnailAvatar : MonoBehaviour
                 StartCoroutine(DrugParameterLerpCoco);
             }
             drugEnable = true;
+        }
+        if(other.tag == "Water")
+        {
+            StartCoroutine(Die());
         }
     }
 
