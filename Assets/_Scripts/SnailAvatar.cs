@@ -131,7 +131,7 @@ public class SnailAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.localPosition.y < yPosToDeath && insideThePipe == false)
+        if (this.transform.position.y < yPosToDeath && insideThePipe == false)
         {
             print("die");
             StartCoroutine(Die());
