@@ -8,6 +8,7 @@ TagManager:
   - Mushroom
   - Entry
   - Exit
+  - Log
   layers:
   - Default
   - TransparentFX

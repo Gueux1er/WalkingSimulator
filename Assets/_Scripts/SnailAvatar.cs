@@ -28,6 +28,9 @@ public class SnailAvatar : MonoBehaviour
     public string snailMovementRef;
     public EventInstance snailMovementEvent;
     [EventRef]
+    public string snailDrownRef;
+    public EventInstance snailDrownEvent;
+    [EventRef]
     public string snailSlidingRef;
     public EventInstance snailSlidingEvent;
     [EventRef]
@@ -39,10 +42,14 @@ public class SnailAvatar : MonoBehaviour
     [EventRef]
     public string exitShellRef;
     public EventInstance exitShellEvent;
+    [EventRef]
+    public string tunnelSnapshotRef;
+    public EventInstance tunnelSnapshotEvent;
     public StudioGlobalParameterTrigger drugEventEmitter;
 
     public bool noMove = false;
     bool drugEnable = false;
+    bool logEnable = false;
 
     [System.Serializable]
     public struct transformSnail
@@ -98,6 +105,7 @@ public class SnailAvatar : MonoBehaviour
 
     [SerializeField] float yPosToDeath;
     bool insideThePipe = false;
+    bool isDead;
 
     [Header("Zoom")]
     [SerializeField] float durationOfZoomInAndOut;
@@ -148,11 +156,13 @@ public class SnailAvatar : MonoBehaviour
         snailMovementEvent = RuntimeManager.CreateInstance(snailMovementRef);
         snailMovementEvent.start();
         snailMovementEvent.setPaused(true);
+        snailDrownEvent = RuntimeManager.CreateInstance(snailDrownRef);
         snailSlidingEvent = RuntimeManager.CreateInstance(snailSlidingRef);
         snailSlidingEvent.start();
         shellSnapshotEvent = RuntimeManager.CreateInstance(shellSnapshotRef);
         heartEvent = RuntimeManager.CreateInstance(heartRef);
         exitShellEvent = RuntimeManager.CreateInstance(exitShellRef);
+        tunnelSnapshotEvent = RuntimeManager.CreateInstance(tunnelSnapshotRef);
 
         lastPosition = transform.position;
     }
@@ -160,7 +170,7 @@ public class SnailAvatar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.position.y < yPosToDeath && insideThePipe == false)
+        if (this.transform.position.y < yPosToDeath && insideThePipe == false && !isDead)
         {
             print("die");
             StartCoroutine(Die());
@@ -320,7 +330,11 @@ public class SnailAvatar : MonoBehaviour
 
     IEnumerator Die()
     {
+        isDead = true;
         noMove = true;
+
+        snailDrownEvent.start();
+
         for (int i = 0; i < 100; i++)
         {
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, ((float)i / 100f));
@@ -338,8 +352,9 @@ public class SnailAvatar : MonoBehaviour
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f - ((float)i / 100f));
             yield return new WaitForSeconds(0.01f);
         }
+
+        isDead = false;
         noMove = false;
-        
     }
 
     public IEnumerator Teleport(Transform target)
@@ -513,9 +528,26 @@ public class SnailAvatar : MonoBehaviour
             }
             drugEnable = true;
         }
+        else if (other.tag == "Log")
+        {
+            if (!logEnable)
+            {
+                if (LogParameterLerpCoco != null)
+                {
+                    StopCoroutine(LogParameterLerpCoco);
+                }
+                LogParameterLerpCoco = LogParameterLerp(0.8f);
+                StartCoroutine(LogParameterLerpCoco);
+            }
+            logEnable = true;
+        }
 
         if (other.tag == "Entry")
         {
+            if (!insideThePipe)
+            {
+                tunnelSnapshotEvent.start();
+            }
             insideThePipe = true;
         }
     }
@@ -535,8 +567,26 @@ public class SnailAvatar : MonoBehaviour
             }
             drugEnable = false;
         }
+        else if (other.tag == "Log")
+        {
+            if (logEnable)
+            {
+                if (LogParameterLerpCoco != null)
+                {
+                    StopCoroutine(LogParameterLerpCoco);
+                }
+                LogParameterLerpCoco = LogParameterLerp(0f);
+                StartCoroutine(LogParameterLerpCoco);
+            }
+            logEnable = false;
+        }
+
         if (other.tag == "Exit")
         {
+            if (insideThePipe)
+            {
+                tunnelSnapshotEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            }
             insideThePipe = false;
         }
     }
@@ -610,6 +660,20 @@ public class SnailAvatar : MonoBehaviour
         while (Time.time - startTime < 1f)
         {
             RuntimeManager.StudioSystem.setParameterByName("Drug", Mathf.Lerp(currentValue, goalValue, Time.time - startTime));
+            yield return null;
+        }
+    }
+
+    IEnumerator LogParameterLerpCoco;
+    IEnumerator LogParameterLerp(float goalValue)
+    {
+        float startTime = Time.time;
+        float currentValue = 0;
+        RuntimeManager.StudioSystem.getParameterByName("Reverb", out currentValue);
+
+        while (Time.time - startTime < 1f)
+        {
+            RuntimeManager.StudioSystem.setParameterByName("Reverb", Mathf.Lerp(currentValue, goalValue, Time.time - startTime));
             yield return null;
         }
     }

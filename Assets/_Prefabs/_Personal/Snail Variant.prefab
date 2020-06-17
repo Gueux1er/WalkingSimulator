@@ -319,10 +319,12 @@ MonoBehaviour:
   gravityOrientation: {x: 0, y: 1, z: 0}
   startCrackFallingRef: event:/2_Trigger/tree_crack_falling_2D
   snailMovementRef: event:/3_Animation/snail_movement
+  snailDrownRef: event:/3_Animation/snail_drown
   snailSlidingRef: event:/3_Animation/snail_sliding
   shellSnapshotRef: event:/8_Snapshot/OnShell
   heartRef: event:/7_Shell/snail_heart
   exitShellRef: event:/7_Shell/exit_shell
+  tunnelSnapshotRef: event:/8_Snapshot/Tunnel
   drugEventEmitter: {fileID: 2539322316699039353}
   noMove: 0
   previousPosition: []
