@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
 
 public class CigaretteButtFall : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CigaretteButtFall : MonoBehaviour
 
     private Transform snail;
     private bool activated = false;
+    public StudioEventEmitter cigaretteFallingEvent;
 
     private void Start()
     {
@@ -21,7 +23,6 @@ public class CigaretteButtFall : MonoBehaviour
     {
         if (activated == false)
         {
-            Debug.Log("ok");
             StartCoroutine(CigaretteFallingRoutine());
             activated = true; 
         }
@@ -30,6 +31,7 @@ public class CigaretteButtFall : MonoBehaviour
     private IEnumerator CigaretteFallingRoutine()
     {
         yield return new WaitForSeconds(3.0f);
+
         Vector3 instancePosition = new Vector3(snail.position.x, height, snail.position.z);
         GameObject go = Instantiate(cigaretteButtPrefab, instancePosition, Quaternion.identity);
         go.GetComponent<Rigidbody>().AddForce(snail.forward * strength, ForceMode.Impulse);

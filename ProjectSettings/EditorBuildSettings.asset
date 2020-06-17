@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/old/RenduThierry.unity
-    guid: 23c97d5e0e321f94faffcd7f53653f03
+    path: Assets/_Scenes/_game.unity
+    guid: e05488f24f6f82a4591deb80cd473a2b
   m_configObjects: {}

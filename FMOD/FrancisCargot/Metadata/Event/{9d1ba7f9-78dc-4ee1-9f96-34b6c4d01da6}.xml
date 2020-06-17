@@ -83,6 +83,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{16ac6f62-6582-4368-a487-65db1aaa3f3b}">
+		<property name="volume">
+			<value>-10</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{90d00601-33b8-49f8-ad3f-7ab8e626746c}</destination>
 		</relationship>
@@ -165,13 +168,13 @@
 	<object class="MixerBusFader" id="{989f77d9-144e-4c00-99a0-4d8b345bdad3}" />
 	<object class="ThreeEQEffect" id="{e38a3aae-95a6-4f19-af17-5d9947830198}">
 		<property name="lowGain">
-			<value>-24</value>
+			<value>-30</value>
 		</property>
 		<property name="midGain">
 			<value>-9.5</value>
 		</property>
 		<property name="highGain">
-			<value>-9.5</value>
+			<value>5</value>
 		</property>
 	</object>
 	<object class="Automator" id="{29f149d9-ae92-496a-9818-f19f4d261aee}">
@@ -227,7 +230,7 @@
 			<value>Spread</value>
 		</property>
 		<property name="value">
-			<value>45</value>
+			<value>30</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(1.000000,360.000000)}</value>
@@ -249,7 +252,7 @@
 			<value>Max Distance</value>
 		</property>
 		<property name="value">
-			<value>20</value>
+			<value>100</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(2.000000,1.000000)(5.000000,5.000000)(10.000000,10.000000)(15.000000,100.000000)(20.000000,1000.000000)(27.000000,10000.000000)}</value>

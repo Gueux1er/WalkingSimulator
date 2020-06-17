@@ -87,7 +87,7 @@ MonoBehaviour:
           m_Time: 0
           m_InterpolationCurve: 0
           m_InterpolationDirection: 0
-          color: {r: 1, g: 1, b: 1, a: 1}
+          color: {r: 0.21176472, g: 0.70980394, b: 0.9568628, a: 1}
         m_Name: Fog Color
         m_Id: 4d2977f2-b2eb-465b-8ad6-2e4116e1b594
       - keyframes:

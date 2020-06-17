@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 8954745660773082213}
   - component: {fileID: 8954745659222703909}
   - component: {fileID: 2539322316699039353}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Snail Variant
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -317,9 +317,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 0}
   gravityOrientation: {x: 0, y: 1, z: 0}
+  startCrackFallingRef: event:/2_Trigger/tree_crack_falling_2D
   snailMovementRef: event:/3_Animation/snail_movement
   snailSlidingRef: event:/3_Animation/snail_sliding
   drugEventEmitter: {fileID: 2539322316699039353}
+  noMove: 0
   previousPosition: []
   normalMat: {fileID: 13400000, guid: 60e5978197e22f446876d1c4015f26a4, type: 2}
   iceMat: {fileID: 13400000, guid: b2932973059f5cb4e86fee8b83c3ca6e, type: 2}
@@ -334,8 +336,9 @@ MonoBehaviour:
   cameraController: {fileID: 8954745659590164459}
   pPV: {fileID: 8758138855686815825}
   gameStartFadeInActivation: 1
-  gameStartFadeInDelay: 4
+  gameStartFadeInDelay: 5.3
   gameStartFadeInDuration: 3
+  waterSOundEventParent: {fileID: 0}
   yPosToDeath: 3.2
   speedOfZoomInAndOut: 0.5
   gaze: {fileID: 1713332430}
@@ -570,20 +573,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4148104902975732102}
     m_Modifications:
-    - target: {fileID: 8758138855162097948, guid: 8c283a7a1fb627b48b621bc8536952b6,
-        type: 3}
-      propertyPath: weight
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8758138855162097949, guid: 8c283a7a1fb627b48b621bc8536952b6,
         type: 3}
       propertyPath: m_Name
       value: Post-process Volume
-      objectReference: {fileID: 0}
-    - target: {fileID: 8758138855162097949, guid: 8c283a7a1fb627b48b621bc8536952b6,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8758138855162097950, guid: 8c283a7a1fb627b48b621bc8536952b6,
         type: 3}

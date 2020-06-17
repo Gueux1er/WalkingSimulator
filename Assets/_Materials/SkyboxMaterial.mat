@@ -161,7 +161,7 @@ Material:
     - _GradientSkyLowerColor: {r: 0.9705882, g: 0.9705882, b: 0.9705882, a: 1}
     - _GradientSkyMiddleColor: {r: 0.21085638, g: 0.7092533, b: 0.9558824, a: 1}
     - _GradientSkyUpperColor: {r: 0.32352942, g: 0.5241379, b: 1, a: 1}
-    - _HorizonFogColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HorizonFogColor: {r: 0.21176472, g: 0.70980394, b: 0.9568628, a: 1}
     - _MoonColor: {r: 0.39705884, g: 0.39705884, b: 0.39705884, a: 1}
     - _MoonPosition: {r: 0.37006795, g: -0.92900467, b: 0, a: 0}
     - _MoonSpriteDimensions: {r: 0, g: 0, b: 0, a: 0}

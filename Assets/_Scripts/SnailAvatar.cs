@@ -9,6 +9,8 @@ using FMODUnity;
 
 public class SnailAvatar : MonoBehaviour
 {
+    public static SnailAvatar Instance;
+
     bool touchingTheFloor = false;
     bool inFakeRotation = false;
     bool modeSlide = false;
@@ -19,6 +21,9 @@ public class SnailAvatar : MonoBehaviour
     Vector3 gravityToGive = -Vector3.up * 9.81f;
 
     [EventRef]
+    public string startCrackFallingRef;
+    public EventInstance startCrackFallingEvent;
+    [EventRef]
     public string snailMovementRef;
     public EventInstance snailMovementEvent;
     [EventRef]
@@ -26,7 +31,7 @@ public class SnailAvatar : MonoBehaviour
     public EventInstance snailSlidingEvent;
     public StudioGlobalParameterTrigger drugEventEmitter;
 
-    bool noMove = false;
+    public bool noMove = false;
     bool drugEnable = false;
 
     [System.Serializable]
@@ -76,6 +81,9 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField]
     float gameStartFadeInDuration = 3.0f;
 
+    [SerializeField]
+    GameObject waterSOundEventParent;
+
     Vector3 lastPosition;
 
     [SerializeField] float yPosToDeath;
@@ -96,6 +104,10 @@ public class SnailAvatar : MonoBehaviour
     [SerializeField] KeyCode[] inputWaypoint;
     [SerializeField] Transform[] positionWaypoint;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -117,6 +129,10 @@ public class SnailAvatar : MonoBehaviour
         if (gameStartFadeInActivation)
         {
             StartCoroutine(FadeInStart());
+        }
+        else
+        {
+            waterSOundEventParent.SetActive(true);
         }
 
         snailMovementEvent = RuntimeManager.CreateInstance(snailMovementRef);
@@ -214,11 +230,13 @@ public class SnailAvatar : MonoBehaviour
         }
 
 
+        if (!noMove)
+        {
+            snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
+            snailSlidingEvent.setParameterByName("SnailDelta", Input.GetKey(KeyCode.Space) ? (transform.position - lastPosition).magnitude * 30 : 0);
 
-        snailMovementEvent.setPaused(!Input.GetKey(KeyCode.Z) || Input.GetKey(KeyCode.Space));
-        snailSlidingEvent.setParameterByName("SnailDelta", Input.GetKey(KeyCode.Space) ? (transform.position - lastPosition).magnitude * 30 : 0);
-
-        lastPosition = transform.position;
+            lastPosition = transform.position;
+        }
     }
 
 
@@ -301,8 +319,18 @@ public class SnailAvatar : MonoBehaviour
     {
         noMove = true;
 
+        startCrackFallingEvent = RuntimeManager.CreateInstance(startCrackFallingRef);
+
+        yield return null;
+
+        startCrackFallingEvent.start();
+
+        waterSOundEventParent.SetActive(false);
+
         fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1.0f);
         yield return new WaitForSeconds(gameStartFadeInDelay);
+
+        waterSOundEventParent.SetActive(true);
 
         for (int i = 0; i < 100; i++)
         {
