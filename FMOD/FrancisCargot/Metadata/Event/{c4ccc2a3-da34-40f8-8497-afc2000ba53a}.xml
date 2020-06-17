@@ -111,7 +111,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{15e77f49-8450-4bc4-9e8a-2b42e38df2d7}">
 		<property name="volume">
-			<value>-2.5</value>
+			<value>-7.5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{2d531916-240e-4761-8475-59a1d8cbbbed}</destination>
@@ -431,7 +431,7 @@
 			<value>Spread</value>
 		</property>
 		<property name="value">
-			<value>180</value>
+			<value>45</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(1.000000,360.000000)}</value>

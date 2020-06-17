@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering.PostProcessing;
 using FMOD.Studio;
 using FMODUnity;
+using DG.Tweening;
 
 public class SnailAvatar : MonoBehaviour
 {
@@ -29,6 +30,15 @@ public class SnailAvatar : MonoBehaviour
     [EventRef]
     public string snailSlidingRef;
     public EventInstance snailSlidingEvent;
+    [EventRef]
+    public string shellSnapshotRef;
+    public EventInstance shellSnapshotEvent;
+    [EventRef]
+    public string heartRef;
+    public EventInstance heartEvent;
+    [EventRef]
+    public string exitShellRef;
+    public EventInstance exitShellEvent;
     public StudioGlobalParameterTrigger drugEventEmitter;
 
     public bool noMove = false;
@@ -90,7 +100,7 @@ public class SnailAvatar : MonoBehaviour
     bool insideThePipe = false;
 
     [Header("Zoom")]
-    [SerializeField] float speedOfZoomInAndOut;
+    [SerializeField] float durationOfZoomInAndOut;
     int stepInTheZoom =0;
     [SerializeField] GameObject gaze;
     [SerializeField] int valueMaxFieldOfView;
@@ -140,6 +150,9 @@ public class SnailAvatar : MonoBehaviour
         snailMovementEvent.setPaused(true);
         snailSlidingEvent = RuntimeManager.CreateInstance(snailSlidingRef);
         snailSlidingEvent.start();
+        shellSnapshotEvent = RuntimeManager.CreateInstance(shellSnapshotRef);
+        heartEvent = RuntimeManager.CreateInstance(heartRef);
+        exitShellEvent = RuntimeManager.CreateInstance(exitShellRef);
 
         lastPosition = transform.position;
     }
@@ -213,10 +226,21 @@ public class SnailAvatar : MonoBehaviour
         {
             Moving();
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !noMove)
         {
             StartCoroutine(SetZoomVision (stopZoom));
             stopZoom = !stopZoom;
+            if (!stopZoom)
+            {
+                shellSnapshotEvent.start();
+                heartEvent.start();
+            }
+            else
+            {
+                shellSnapshotEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                heartEvent.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                exitShellEvent.start();
+            }
         }
 
         for (int i = 0; i < inputWaypoint.Length; i++)
@@ -245,10 +269,33 @@ public class SnailAvatar : MonoBehaviour
     IEnumerator SetZoomVision(bool v)
     {
         noMove = true;
+
+        fadeImage.DOColor(new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1f), durationOfZoomInAndOut)
+            .OnComplete(() =>
+            {
+                if (v == true)
+                {
+                    gaze.SetActive(true);
+                    Camera.main.fieldOfView = valueMinFieldOfView;
+                    depthOfField.focalLength.value = valueMinFocal;
+                }
+                else
+                {
+                    gaze.SetActive(false);
+                    Camera.main.fieldOfView = valueMaxFieldOfView;
+                    depthOfField.focalLength.value = valueMaxFocal;
+                }
+
+                fadeImage.DOColor(new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 0f), durationOfZoomInAndOut)
+                    .OnComplete(() => noMove = false);
+            });
+
+        yield break;
+
         for (int i =0; i <100; i++)
         {
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, (float)i / 100f);
-            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+            yield return new WaitForSeconds(durationOfZoomInAndOut / 100);
         }
         if (v == true)
         {
@@ -261,12 +308,12 @@ public class SnailAvatar : MonoBehaviour
             gaze.SetActive(false);
             Camera.main.fieldOfView = valueMaxFieldOfView;
             depthOfField.focalLength.value = valueMaxFocal;
-            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+            yield return new WaitForSeconds(durationOfZoomInAndOut / 100);
         }
         for (int i = 0; i < 100; i++)
         {
             fadeImage.color = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, 1 - (float)i / 100f);
-            yield return new WaitForSeconds(speedOfZoomInAndOut / 100);
+            yield return new WaitForSeconds(durationOfZoomInAndOut / 100);
         }
         noMove = false;
     }

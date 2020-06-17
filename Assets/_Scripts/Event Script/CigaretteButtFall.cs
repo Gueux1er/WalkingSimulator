@@ -11,7 +11,6 @@ public class CigaretteButtFall : MonoBehaviour
 
     private Transform snail;
     private bool activated = false;
-    public StudioEventEmitter cigaretteFallingEvent;
 
     private void Start()
     {
@@ -21,7 +20,7 @@ public class CigaretteButtFall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (activated == false)
+        if (activated == false && other.gameObject.layer == 13)
         {
             StartCoroutine(CigaretteFallingRoutine());
             activated = true; 

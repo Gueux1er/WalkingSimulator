@@ -12,9 +12,13 @@ public class StartAnimationOnTriggerEnter : MonoBehaviour
     public Animator[] animators;
     public StudioEventEmitter[] eventToPlayWithTrigger;
 
-    private void OnTriggerEnter()
+    private void OnTriggerEnter(Collider other)
     {
-        trigger.enabled = false;
+        if (other.gameObject.layer != 13)
+            return;
+
+        if (trigger != null)
+            trigger.enabled = false;
 
         foreach (Animator a in animators)
         {

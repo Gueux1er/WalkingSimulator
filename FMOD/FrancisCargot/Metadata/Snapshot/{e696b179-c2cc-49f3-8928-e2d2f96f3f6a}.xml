@@ -59,7 +59,7 @@
 			<value>lowGain</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>-8.5</value>
 		</property>
 		<relationship name="automatableObject">
 			<destination>{f2dda6f3-e5bc-4bbe-82f3-f90ede2768e6}</destination>
