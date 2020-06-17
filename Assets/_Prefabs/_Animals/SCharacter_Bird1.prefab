@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c455bc70a6282a84098c664e5dc6c00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdEvent: {fileID: 987787379603847353}
+  crowFarEvent: {fileID: 987787379603847353}
 --- !u!1 &4375227264775699066
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +791,7 @@ GameObject:
   - component: {fileID: 7247605196788562484}
   - component: {fileID: 987787379603847353}
   m_Layer: 0
-  m_Name: Bird Event
+  m_Name: Crow Far Event
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

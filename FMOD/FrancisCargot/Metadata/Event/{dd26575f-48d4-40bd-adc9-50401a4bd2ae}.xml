@@ -83,6 +83,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{413404bc-6673-46b0-881a-e03ebce31218}">
+		<property name="volume">
+			<value>-17</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{9bb18317-76a7-428e-8217-3a1e2e34465a}</destination>
 		</relationship>
@@ -380,7 +383,7 @@
 			<value>Max Distance</value>
 		</property>
 		<property name="value">
-			<value>7</value>
+			<value>10</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(2.000000,1.000000)(5.000000,5.000000)(10.000000,10.000000)(15.000000,100.000000)(20.000000,1000.000000)(27.000000,10000.000000)}</value>

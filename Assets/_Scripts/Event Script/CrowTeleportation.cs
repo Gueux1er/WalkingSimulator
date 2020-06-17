@@ -12,6 +12,7 @@ public class CrowTeleportation : MonoBehaviour
         if (other.tag == "Player")
         {
             SnailAvatar avatar = other.GetComponent<SnailAvatar>();
+            avatar.noMove = true;
             StartCoroutine(Teleportation(avatar));
         }
     }

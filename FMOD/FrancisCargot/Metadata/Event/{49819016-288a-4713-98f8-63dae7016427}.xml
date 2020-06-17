@@ -84,7 +84,7 @@
 	</object>
 	<object class="EventMixerMaster" id="{8d174288-724c-42f4-8068-a6aa3d57e4d4}">
 		<property name="volume">
-			<value>-13.5</value>
+			<value>-5</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{2fa7f98a-fef6-4638-803d-5f09a7439b62}</destination>
@@ -111,6 +111,9 @@
 		<property name="length">
 			<value>2.1948541666666666</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{5df460c3-551a-468f-8e48-d6e9e7595377}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{6bfce66f-6f69-452f-b2b8-3964816e6534}</destination>
 		</relationship>
@@ -119,6 +122,9 @@
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
+		<relationship name="modulators">
+			<destination>{a53fd00f-3aab-45c1-8677-4e903605ee43}</destination>
+		</relationship>
 		<relationship name="effectChain">
 			<destination>{e2a953b8-246d-4718-a9a9-119700d905a8}</destination>
 		</relationship>
@@ -139,6 +145,22 @@
 	</object>
 	<object class="MixerBusPanner" id="{c0d456d1-97c1-49f9-8f69-9fff486024b0}" />
 	<object class="MixerBusFader" id="{86292e96-c874-40ad-a35a-9d2efdeee330}" />
+	<object class="RandomizerModulator" id="{5df460c3-551a-468f-8e48-d6e9e7595377}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>11</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{a53fd00f-3aab-45c1-8677-4e903605ee43}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>volume</value>
+		</property>
+		<property name="amount">
+			<value>10</value>
+		</property>
+	</object>
 	<object class="MixerBusEffectChain" id="{e2a953b8-246d-4718-a9a9-119700d905a8}">
 		<relationship name="effects">
 			<destination>{1b452b04-d712-49e5-a7d2-67f22806512a}</destination>
@@ -233,7 +255,7 @@
 			<value>Spread</value>
 		</property>
 		<property name="value">
-			<value>0</value>
+			<value>45</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(1.000000,360.000000)}</value>
@@ -255,7 +277,7 @@
 			<value>Max Distance</value>
 		</property>
 		<property name="value">
-			<value>60</value>
+			<value>100</value>
 		</property>
 		<property name="curve">
 			<value>{(0.000000,0.000000)(2.000000,1.000000)(5.000000,5.000000)(10.000000,10.000000)(15.000000,100.000000)(20.000000,1000.000000)(27.000000,10000.000000)}</value>
