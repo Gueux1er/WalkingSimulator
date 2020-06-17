@@ -174,6 +174,7 @@ public class SnailAvatar : MonoBehaviour
         {
             print("die");
             StartCoroutine(Die());
+            snailDrownEvent.start();
         }
         if (modeSlide == true)
         {
@@ -332,8 +333,6 @@ public class SnailAvatar : MonoBehaviour
     {
         isDead = true;
         noMove = true;
-
-        snailDrownEvent.start();
 
         for (int i = 0; i < 100; i++)
         {
