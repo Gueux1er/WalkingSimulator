@@ -74,11 +74,9 @@ fmod_editor.log
 /Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
 
 #FMOD AND SOUNDS
-*.wav
-*.wav.meta
-*.psd
 *.db
 *.cache
+*.psd
 *.psd.meta
 
 log-filter.txt
