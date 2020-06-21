@@ -527,7 +527,7 @@ public class SnailAvatar : MonoBehaviour
             }
             drugEnable = true;
         }
-        else if (other.tag == "Log")
+        /*else if (other.tag == "Log")
         {
             if (!logEnable)
             {
@@ -539,7 +539,7 @@ public class SnailAvatar : MonoBehaviour
                 StartCoroutine(LogParameterLerpCoco);
             }
             logEnable = true;
-        }
+        }*/
 
         if (other.tag == "Entry")
         {
@@ -566,7 +566,7 @@ public class SnailAvatar : MonoBehaviour
             }
             drugEnable = false;
         }
-        else if (other.tag == "Log")
+        /*else if (other.tag == "Log")
         {
             if (logEnable)
             {
@@ -578,7 +578,7 @@ public class SnailAvatar : MonoBehaviour
                 StartCoroutine(LogParameterLerpCoco);
             }
             logEnable = false;
-        }
+        }*/
 
         if (other.tag == "Exit")
         {

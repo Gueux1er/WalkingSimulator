@@ -92,6 +92,7 @@
 		<property name="length">
 			<value>8</value>
 		</property>
+		<property name="name" />
 		<relationship name="fadeInCurve">
 			<destination>{dd781695-2b71-4ef0-a14c-dc4514314879}</destination>
 		</relationship>
